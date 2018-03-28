@@ -1,0 +1,31 @@
+spec_version: 1
+configuration:
+  healthcheck:
+    script: mysql-hc.sh
+  initialization:
+    script: mysql.sh
+  start:
+    script: mysql-start.sh
+deploymentDefaults:
+  images:
+  - cloud: aws
+    image: ami-70054309
+infrastructure:
+  connectivity:
+    internal:
+    - port_info:
+        path: ''
+        port: 3306
+inputs:
+  - DB_USER: '' # used in mysql.sh to setup the database root account
+  - DB_PASS: '' # used in mysql.sh to setup the database root account
+  - DB_NAME: '' # used in mysql.sh to create an empty database
+kind: application
+source:
+  image:
+    ami:
+    - id: ami-f885609f
+      region: eu-west-2
+    - id: ami-70054309
+      region: eu-west-1
+  os_type: linux

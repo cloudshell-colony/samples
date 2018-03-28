@@ -1,0 +1,33 @@
+# A WordPress web site deployed on 2 EC2 instances
+#
+#       [Front End] (Apache, PHP, WordPress)
+#            |
+#       [Back End]  (MySQL)
+#
+# login with http://public_address/index.php
+#
+
+spec_version: 1
+kind: blueprint
+environmentType: sandbox
+metadata:
+  description: A sample blueprint to demonstrate running a LAMP Wordpress stack.
+clouds:
+- aws
+inputs:
+  - DB_USER: root
+  - DB_PASS: 123456
+  - DB_NAME: wordpress_demo
+applications:
+- wordpress:
+    input_values:
+    - DB_USER: $DB_USER
+    - DB_PASS: $DB_PASS
+    - DB_NAME: $DB_NAME
+    depends_on:
+    - mysql
+- mysql:
+    input_values:
+    - DB_USER: $DB_USER
+    - DB_PASS: $DB_PASS
+    - DB_NAME: $DB_NAME

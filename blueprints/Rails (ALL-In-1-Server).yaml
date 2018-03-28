@@ -1,0 +1,31 @@
+# Ruby on Rails Website deployed on a single EC2 instance
+#
+# [EC2 Instance: MySQL, Rails]
+#
+
+spec_version: 1
+kind: blueprint
+environmentType: sandbox
+metadata:
+  description: Ruby On Rails & MySQL deployed in a cheap ALL-in-1 server
+clouds:
+- aws
+inputs:
+  - DB_USER: root
+  - DB_PASS: 123456
+  - DB_NAME: railsapp_development
+applications:
+- mysql:
+    target: vm1
+    input_values:
+    - DB_USER: $DB_USER
+    - DB_PASS: $DB_PASS
+    - DB_NAME: $DB_NAME
+- rails-website:
+    target: vm1
+    input_values:
+    - DB_USER: $DB_USER
+    - DB_PASS: $DB_PASS
+    - DB_NAME: $DB_NAME
+    depends_on:
+    - mysql

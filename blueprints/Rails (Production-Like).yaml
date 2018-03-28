@@ -1,0 +1,33 @@
+# Ruby on Rails Website deployed on 1 EC2 instance for MySQL
+# and multiple instances as front ends controlled with AWS AutoScalingGroup
+#
+#       [Front End],[Front End],[Front End]...[Front End] (Rails, Ruby, Webrick)
+#            |
+#       [Back End]  (MySQL)
+#
+
+spec_version: 1
+kind: blueprint
+environmentType: sandbox
+metadata:
+  description: Ruby On Rails & MySQL deployed with Autoscaling & Load Balancing
+clouds:
+- aws
+inputs:
+  - DB_USER: root
+  - DB_PASS: 123456
+  - DB_NAME: railsapp_development
+applications:
+- mysql:
+    input_values:
+    - DB_USER: $DB_USER
+    - DB_PASS: $DB_PASS
+    - DB_NAME: $DB_NAME
+- rails-website:
+    instances: 3
+    depends_on:
+    - mysql
+    input_values:
+    - DB_USER: $DB_USER
+    - DB_PASS: $DB_PASS
+    - DB_NAME: $DB_NAME
