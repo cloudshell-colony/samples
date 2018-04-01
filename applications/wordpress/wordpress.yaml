@@ -1,31 +1,27 @@
 spec_version: 1
-configuration:
-  healthcheck:
-    script: wordpress-hc.sh
-  initialization:
-    script: wordpress.sh
-  start:
-    script: wordpress-start.sh
-deploymentDefaults:
-  images:
-  - cloud: aws
-    image: ami-70054309
+kind: application
+inputs:
+  - DB_USER: '' # used in /var/www/html/wp-config.php to define the access to the database
+  - DB_PASS: '' # used in /var/www/html/wp-config.php to define the access to the database
+  - DB_NAME: '' # used in /var/www/html/wp-config.php to define the access to the database
 infrastructure:
   connectivity:
     external:
     - port_info:
         path: ''
         port: 80
-inputs:
-  - DB_USER: '' # used in /var/www/html/wp-config.php to define the access to the database
-  - DB_PASS: '' # used in /var/www/html/wp-config.php to define the access to the database
-  - DB_NAME: '' # used in /var/www/html/wp-config.php to define the access to the database
-kind: application
 source:
   image:
     ami:
-    - id: ami-f885609f
-      region: eu-west-2
-    - id: ami-70054309
+    - id: ami-f90a4880
       region: eu-west-1
   os_type: linux
+configuration:
+  initialization:
+    script: wordpress.sh
+  start:
+    script: wordpress-start.sh
+  healthcheck:
+      wait_for_ports: ALL
+      timeout: 180
+

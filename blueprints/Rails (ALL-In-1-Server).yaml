@@ -29,3 +29,6 @@ applications:
     - DB_NAME: $DB_NAME
     depends_on:
     - mysql
+artifacts:
+- mysql: ''
+- rails-website: ''

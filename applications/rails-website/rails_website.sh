@@ -55,7 +55,7 @@ cd ${ARTIFACTS_PATH}
 git clone https://github.com/QualiNext/colony_sample_rails_website.git
 
 mkdir /home/ubuntu/wwwroot;
-cp -a ${ARTIFACTS_PATH}/. /home/ubuntu/wwwroot
+cp -a ${ARTIFACTS_PATH}/colony_sample_rails_website/website/. /home/ubuntu/wwwroot
 
 #tar -xvf ${ARTIFACTS_PATH}/website.tar.gz -C /home/ubuntu/wwwroot; # replace with recursive copy
 cd /home/ubuntu/wwwroot
