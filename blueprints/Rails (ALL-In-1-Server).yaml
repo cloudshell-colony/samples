@@ -9,7 +9,7 @@ environmentType: sandbox
 metadata:
   description: Ruby On Rails & MySQL deployed in a cheap ALL-in-1 server
 clouds:
-- aws
+- aws: eu-west-1
 inputs:
   - DB_USER: root
   - DB_PASS: 123456
@@ -29,6 +29,3 @@ applications:
     - DB_NAME: $DB_NAME
     depends_on:
     - mysql
-artifacts:
-- mysql: ''
-- rails-website: ''

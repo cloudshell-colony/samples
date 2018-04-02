@@ -1,30 +1,30 @@
-# Java Sprint web application deployed on 2 EC2 instances
+# Ruby on Rails Website deployed on 2 EC2 instances
 #
-#       [Front End] (Java, Tomcat)
+#       [Front End] (Rails, Ruby, Webrick)
 #            |
 #       [Back End]  (MySQL)
 #
 
 spec_version: 1
 kind: blueprint
-environmentType: sandbox
 metadata:
-  description: A Java Spring website deployed on a TomCat server and MySQL database
+  description: Ruby On Rails & MySQL deployed on 2 servers - front-end, back-end
+environmentType: sandbox
 clouds:
 - aws: eu-west-1
 inputs:
   - DB_USER: root
   - DB_PASS: 123456
-  - DB_NAME: demo_db
+  - DB_NAME: railsapp_development
 applications:
-- mysql:
+- mysql-aws:
     input_values:
     - DB_USER: $DB_USER
     - DB_PASS: $DB_PASS
     - DB_NAME: $DB_NAME
-- java-spring-website:
+- rails-website-aws:
     depends_on:
-    - mysql
+    - mysql-aws
     input_values:
     - DB_USER: $DB_USER
     - DB_PASS: $DB_PASS

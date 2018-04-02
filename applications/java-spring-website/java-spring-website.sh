@@ -30,7 +30,8 @@ apt-get install tomcat8-admin -y
 echo "****************************************************************"
 echo "Get the web application from github"
 echo "****************************************************************"
-cd ${ARTIFACTS_PATH}
+mkdir /home/artifacts
+cd /home/artifacts
 git clone https://github.com/QualiNext/colony-java-spring-sample.git
 
 

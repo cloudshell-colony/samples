@@ -11,7 +11,7 @@ metadata:
   description: Ruby On Rails & MySQL deployed on 2 servers - front-end, back-end
 environmentType: sandbox
 clouds:
-- aws
+- aws: eu-west-1
 inputs:
   - DB_USER: root
   - DB_PASS: 123456
@@ -29,6 +29,3 @@ applications:
     - DB_USER: $DB_USER
     - DB_PASS: $DB_PASS
     - DB_NAME: $DB_NAME
-artifacts:
-- mysql: ''
-- rails-website: ''

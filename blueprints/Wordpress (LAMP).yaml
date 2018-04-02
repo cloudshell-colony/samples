@@ -13,7 +13,7 @@ environmentType: sandbox
 metadata:
   description: A sample blueprint to demonstrate running a LAMP Wordpress stack.
 clouds:
-- aws
+- aws: eu-west-1
 inputs:
   - DB_USER: root
   - DB_PASS: 123456
@@ -31,6 +31,3 @@ applications:
     - DB_USER: $DB_USER
     - DB_PASS: $DB_PASS
     - DB_NAME: $DB_NAME
-artifacts:
-- wordpress: ''
-- mysql: ''

@@ -51,11 +51,12 @@ gem install mysql2
 echo "****************************************************************"
 echo "Installing website (from artifacts) and retrieving dependencies"
 echo "****************************************************************"
-cd ${ARTIFACTS_PATH}
+mkdir /home/artifacts
+cd /home/artifacts
 git clone https://github.com/QualiNext/colony_sample_rails_website.git
 
 mkdir /home/ubuntu/wwwroot;
-cp -a ${ARTIFACTS_PATH}/colony_sample_rails_website/website/. /home/ubuntu/wwwroot
+cp -a /home/artifacts/colony_sample_rails_website/website/. /home/ubuntu/wwwroot
 
 #tar -xvf ${ARTIFACTS_PATH}/website.tar.gz -C /home/ubuntu/wwwroot; # replace with recursive copy
 cd /home/ubuntu/wwwroot
