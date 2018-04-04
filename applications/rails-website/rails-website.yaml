@@ -23,4 +23,4 @@ configuration:
     script: rails_website-start.sh
   healthcheck:
       wait_for_ports: ALL
-      timeout: 300
+      timeout: 500
