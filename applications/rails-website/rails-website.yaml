@@ -26,5 +26,5 @@ configuration:
   start:
     script: rails_website-start.sh    # This script restarts the Webrick HTTP server after all the initialization completes
   healthcheck:
-      wait_for_ports: All             # To validate the installation, we wait to see that the ports are available 
+      wait_for_ports: ALL             # To validate the installation, we wait to see that the ports are available 
       timeout: 500
