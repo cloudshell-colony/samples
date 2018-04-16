@@ -55,7 +55,7 @@ cd /home/artifacts
 git clone https://github.com/cloudshell-colony/sample_rails_source.git
 
 mkdir /home/ubuntu/wwwroot;
-cp -a /home/artifacts/colony_sample_rails_website/website/. /home/ubuntu/wwwroot
+cp -a /home/artifacts/sample_rails_source/website/. /home/ubuntu/wwwroot
 
 
 cd /home/ubuntu/wwwroot
