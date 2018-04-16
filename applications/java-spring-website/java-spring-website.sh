@@ -38,8 +38,8 @@ git clone https://github.com/cloudshell-colony/sample_java_spring_source.git
 echo "****************************************************************"
 echo "Prepare the environment configuration file that will be consumed by the servlet"
 echo "****************************************************************"
-mkdir /home/user/.config/sample_java_spring_source -p
-bash -c "cat >> /home/user/.config/sample_java_spring_source/app.properties" <<EOL
+mkdir /home/user/.config/colony-java-spring-sample -p
+bash -c "cat >> /home/user/.config/colony-java-spring-sample/app.properties" <<EOL
 # Dadabase connection settings:
 jdbc.url=jdbc:mysql://mysql.$DOMAIN_NAME:3306/$DB_NAME
 jdbc.username=$DB_USER
