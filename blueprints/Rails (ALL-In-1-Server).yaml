@@ -1,3 +1,4 @@
+
 # Ruby on Rails Website deployed on a single EC2 instance
 #
 # [EC2 Instance: MySQL, Rails]
@@ -5,27 +6,26 @@
 
 spec_version: 1
 kind: blueprint
-environmentType: sandbox
 metadata:
   description: Ruby On Rails & MySQL deployed in a cheap ALL-in-1 server
 clouds:
 - aws: eu-west-1
-inputs:
-  - DB_USER: root
-  - DB_PASS: 123456
+inputs:                                           # These are the blueprint parameters and their default values, they can be changed upon sandbox creation.
+  - DB_USER: root                                 # DB_USER, DB_PASS - in this sample we install the database and define the admin account
+  - DB_PASS: 123456                               # DB_NAME - target database name, in this sample we create a new database and connect it to the application
   - DB_NAME: railsapp_development
-applications:
-- mysql:
-    target: vm1
+applications:                                    # These are the applications that will be deployed in this blueprint:
+- mysql:                                         # 1 instance of mysql (see: applications/mysql/mysql.yaml)
+    target: vm1                                  # By providing a target name: 'vm1', we can add more applications to this target - see: rails-website below.
     input_values:
     - DB_USER: $DB_USER
     - DB_PASS: $DB_PASS
     - DB_NAME: $DB_NAME
-- rails-website:
-    target: vm1
+- rails-website:                                 # 1 instance of rails-website (see: applications/rails-website/rails-website.yaml)
+    target: vm1                                  # By providing a target name: 'vm1', we deploy this application on the same tagret that was declared above.
     input_values:
     - DB_USER: $DB_USER
     - DB_PASS: $DB_PASS
     - DB_NAME: $DB_NAME
-    depends_on:
+    depends_on:                                  # The website depends on mysql and will start deploying only when the database is ready.
     - mysql

@@ -1,27 +1,30 @@
+#   
+#   This application file defines how to deploy and configure a Wordpress application 
+#
 spec_version: 1
 kind: application
-inputs:
-  - DB_USER: '' # used in /var/www/html/wp-config.php to define the access to the database
-  - DB_PASS: '' # used in /var/www/html/wp-config.php to define the access to the database
-  - DB_NAME: '' # used in /var/www/html/wp-config.php to define the access to the database
-infrastructure:
+inputs:                 # These inputs are used by the initialization script to configure the connectivity to the database.
+  - DB_USER: ''         # In the script we update the connectivity details which are located in /var/www/html/wp-config.php
+  - DB_PASS: '' 
+  - DB_NAME: '' 
+infrastructure:         # These are the infrastructure definitions for a single application instance
   connectivity:
-    external:
-    - port_info:
+    external:           
+    - port_info:        
         path: ''
-        port: 80
+        port: 80        # Port 80 will be opened externally to receive web requests
 source:
   image:
-    ami:
-    - id: ami-f90a4880
+    ami:                            # This is a clean Ubuntu server image that will used to create a new EC2 instance in the selected AWS region
+    - id: ami-f90a4880    
       region: eu-west-1
   os_type: linux
-configuration:
-  initialization:
-    script: wordpress.sh
+configuration:                    
+  initialization:               
+    script: wordpress.sh            # This script is executed when the infrastructure is ready, it installs wordpress on a clean Ubuntu OS.
   start:
-    script: wordpress-start.sh
-  healthcheck:
-      wait_for_ports: ALL
+    script: wordpress-start.sh      # This script restarts the Apache server after all the initialization completes
+  healthcheck:                      
+      wait_for_ports: ALL           # To validate the installation, we wait to see that the ports are available 
       timeout: 180
 

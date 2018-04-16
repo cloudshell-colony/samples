@@ -1,4 +1,5 @@
-# Java Sprint web application deployed on 2 EC2 instances
+
+# A Java Spring website deployed on a TomCat server and MySQL database deployed on 2 EC2 instances
 #
 #       [Front End] (Java, Tomcat)
 #            |
@@ -7,25 +8,26 @@
 
 spec_version: 1
 kind: blueprint
-environmentType: sandbox
 metadata:
   description: A Java Spring website deployed on a TomCat server and MySQL database
 clouds:
 - aws: eu-west-1
-inputs:
-  - DB_USER: root
-  - DB_PASS: 123456
+inputs:                           # These are the blueprint parameters and their default values, they can be changed upon sandbox creation.
+  - DB_USER: root                 # DB_USER, DB_PASS - in this sample we install the database and define the admin account
+  - DB_PASS: 123456               # DB_NAME - target database name, in this sample we create a new database and connect it to the application
   - DB_NAME: demo_db
-applications:
-- mysql:
+applications:                     # These are the applications that will be deployed in this blueprint:
+- mysql:                          # 1 instance of mysql (see: applications/mysql/mysql.yaml)
+    instances: 1
     input_values:
     - DB_USER: $DB_USER
     - DB_PASS: $DB_PASS
     - DB_NAME: $DB_NAME
-- java-spring-website:
-    depends_on:
+- java-spring-website:            # 1 instance of java-spring-website (see: applications/java-spring-website/java-spring-website.yaml)
+    instances: 1
+    input_values:
+    - DB_USER: $DB_USER
+    - DB_PASS: $DB_PASS
+    - DB_NAME: $DB_NAME
+    depends_on:                   # The website depends on mysql and will start deploying only when the database is ready.
     - mysql
-    input_values:
-    - DB_USER: $DB_USER
-    - DB_PASS: $DB_PASS
-    - DB_NAME: $DB_NAME

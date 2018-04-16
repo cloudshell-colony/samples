@@ -32,7 +32,7 @@ echo "Get the web application from github"
 echo "****************************************************************"
 mkdir /home/artifacts
 cd /home/artifacts
-git clone https://github.com/QualiNext/colony-java-spring-sample.git
+git clone https://github.com/cloudshell-colony/sample_java_spring_source.git
 
 
 echo "****************************************************************"

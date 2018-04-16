@@ -1,26 +1,30 @@
+#   
+#   This application file defines how to deploy and configure a sample website, 
+#   Developed with Java Spring, deployed on a TomCat web server
+#
 spec_version: 1
 kind: application
-inputs:
-  - DB_USER: '' # used in src/main/webapp/WEB-INF/spring/root-context.xml to
-  - DB_PASS: '' # used in website/config/database.yml to define the access to the database
-  - DB_NAME: '' # used in website/config/database.yml to define the access to the database
-infrastructure:
+inputs:           # These inputs are used by the initialization script to configure the connectivity to the database.
+  - DB_USER: ''   # In the script we update the connectivity details which are located in the app.properties file
+  - DB_PASS: '' 
+  - DB_NAME: '' 
+infrastructure:   # These are the infrastructure definitions for a single application instance
   connectivity:
     external:
     - port_info:
         path: ''
-        port: 8080
+        port: 8080                    # Port 8080 will be opened externally to receive web requests
 source:
   image:
-    ami:
+    ami:                              # This is a clean Ubuntu server image that will used to create a new EC2 instance in the selected AWS region
     - id: ami-f90a4880
       region: eu-west-1
   os_type: linux
 configuration:
   initialization:
-    script: java-spring-website.sh
+    script: java-spring-website.sh        # This script is executed when the infrastructure is ready, it downloads the website artifacts and installs the website with all of its dependencies
   start:
-    script: java-spring-website-start.sh
+    script: java-spring-website-start.sh  # This script restarts the TomCat server after all the initialization completes
   healthcheck:
-      wait_for_ports: ALL
+      wait_for_ports: ALL                 # To validate the installation, we wait to see that the ports are available 
       timeout: 180

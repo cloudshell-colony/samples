@@ -4,30 +4,29 @@
 #            |
 #       [Back End]  (MySQL)
 #
-# login with http://public_address/index.php
-#
 
-spec_version: 1
+spec_version: 1           
 kind: blueprint
-environmentType: sandbox
 metadata:
   description: A sample blueprint to demonstrate running a LAMP Wordpress stack.
 clouds:
 - aws: eu-west-1
-inputs:
-  - DB_USER: root
-  - DB_PASS: 123456
-  - DB_NAME: wordpress_demo
-applications:
-- wordpress:
+inputs:                           # These are the blueprint parameters and their default values, they can be changed upon sandbox creation.
+  - DB_USER: root                 # DB_USER, DB_PASS - in this sample we install the database and define the admin account
+  - DB_PASS: 123456               # DB_NAME - target database name, in this sample we create a new database and connect it to the application
+  - DB_NAME: wordpress_demo       
+applications:                     # These are the applications that will be deployed in this blueprint:
+- mysql:                          # 1 instance of mysql (see: applications/mysql/mysql.yaml)
+    instances: 1                
     input_values:
     - DB_USER: $DB_USER
     - DB_PASS: $DB_PASS
     - DB_NAME: $DB_NAME
-    depends_on:
+- wordpress:                      # 1 instance of wordpress (see: applications/wordpress/wordpress.yaml)
+    instances: 1
+    input_values:
+    - DB_USER: $DB_USER
+    - DB_PASS: $DB_PASS
+    - DB_NAME: $DB_NAME
+    depends_on:                   # Wordpress depends on mysql and will start deploying only when the database is ready.
     - mysql
-- mysql:
-    input_values:
-    - DB_USER: $DB_USER
-    - DB_PASS: $DB_PASS
-    - DB_NAME: $DB_NAME
