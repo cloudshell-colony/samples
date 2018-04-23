@@ -1,0 +1,24 @@
+deployment-targets:
+- name: single-pod
+kind: blueprint
+applications:
+- fasty
+- demoapp-server:
+    input_values:
+    - PORT: $SERVER_PORT
+    target: single-pod
+- demoapp-client:
+    input_values:
+    - PORT: $CLIENT_PORT
+    - SERVER_PORT: $SERVER_PORT
+    target: single-pod
+clouds:
+- aws-staging: eu-west-2
+spec_version: 1
+inputs:
+- CLIENT_PORT: 3000
+- SERVER_PORT: 3001
+artifacts:
+- demoapp-server: ''
+- demoapp-client: applications/demoapp-client/production/demoapp-client.tar.gz
+environmentType: sandbox
