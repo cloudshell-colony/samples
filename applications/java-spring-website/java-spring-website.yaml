@@ -4,27 +4,27 @@
 #
 spec_version: 1
 kind: application
-inputs:           # These inputs are used by the initialization script to configure the connectivity to the database.
-  - DB_USER: ''   # In the script we update the connectivity details which are located in the app.properties file
+inputs:                                      # These inputs are used by the initialization script, to configure the connectivity to the database
+  - DB_USER: ''                              # In the script we update the connectivity details which are located in the app.properties file
   - DB_PASS: '' 
   - DB_NAME: '' 
-infrastructure:   # These are the infrastructure definitions for a single application instance
+infrastructure:                              # These are infrastructure definitions for a single application instance
   connectivity:
     external:
     - port_info:
         path: ''
-        port: 8080                    # Port 8080 will be opened externally to receive web requests
+        port: 8080                           # Port 8080 will be opened externally to receive web requests
 source:
   image:
-    ami:                              # This is a clean Ubuntu server image that will used to create a new EC2 instance in the selected AWS region
+    ami:                                     # This is a clean Ubuntu server image that will be used to create a new EC2 instance in the defined AWS region
     - id: ami-f90a4880
-      region: eu-west-1
+      region: eu-west-1                      # AWS region
   os_type: linux
 configuration:
-  initialization:
-    script: java-spring-website.sh        # This script is executed when the infrastructure is ready, it downloads the website artifacts and installs the website with all of its dependencies
+  initialization:                            # The initialization script is executed when the infrastructure is ready
+    script: java-spring-website.sh           # This script downloads the website artifacts and installs it along with its dependencies
   start:
-    script: java-spring-website-start.sh  # This script restarts the TomCat server after all the initialization completes
+    script: java-spring-website-start.sh     # This script restarts the TomCat server after the entire initialization is complete
   healthcheck:
-      wait_for_ports: ALL                 # To validate the installation, we wait to see that the ports are available 
+      wait_for_ports: ALL                    # To validate the installation, we wait to see that all ports are available 
       timeout: 180

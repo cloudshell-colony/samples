@@ -11,22 +11,22 @@ metadata:
   description: A sample blueprint to demonstrate running a LAMP Wordpress stack.
 clouds:
 - aws: eu-west-1
-inputs:                           # These are the blueprint parameters and their default values, they can be changed upon sandbox creation.
-  - DB_USER: root                 # DB_USER, DB_PASS - in this sample we install the database and define the admin account
-  - DB_PASS: 123456               # DB_NAME - target database name, in this sample we create a new database and connect it to the application
-  - DB_NAME: wordpress_demo       
+inputs:                           # These are the blueprint parameters and their default values. The values can be changed when creating a sandbox based on this blueprint.
+  - DB_USER: root                 # DB_USER, DB_PASS - Used to define the admin account when installing the database
+  - DB_PASS: 123456               
+  - DB_NAME: wordpress_demo       # DB_NAME - a target database name, used when creating a new database and connecting it to the application
 applications:                     # These are the applications that will be deployed in this blueprint:
-- mysql:                          # 1 instance of mysql (see: applications/mysql/mysql.yaml)
+- mysql:                          # One instance of mysql (see: applications/mysql/mysql.yaml)
     instances: 1                
     input_values:
     - DB_USER: $DB_USER
     - DB_PASS: $DB_PASS
     - DB_NAME: $DB_NAME
-- wordpress:                      # 1 instance of wordpress (see: applications/wordpress/wordpress.yaml)
+- wordpress:                      # One instance of WordPress (see: applications/wordpress/wordpress.yaml)
     instances: 1
     input_values:
     - DB_USER: $DB_USER
     - DB_PASS: $DB_PASS
     - DB_NAME: $DB_NAME
-    depends_on:                   # Wordpress depends on mysql and will start deploying only when the database is ready.
+    depends_on:                   # The website depends on MySQL and will start deploying only when the database is ready
     - mysql

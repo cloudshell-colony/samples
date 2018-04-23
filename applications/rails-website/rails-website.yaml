@@ -1,28 +1,28 @@
 #   
 #   This application file defines how to deploy and configure a sample website, 
-#   Developed with Ruby On Rails, deployed on a Webrick HTTP server
+#   developed with Ruby On Rails, deployed on a Webrick HTTP server
 #
 spec_version: 1
 kind: application
-inputs:             # These inputs define the website's connectivity to the database.
-  - DB_USER: ''     # They are received from the blueprint and translated into environment variables that are available to the application
-  - DB_PASS: ''     # We use these environment variables in the website's configuration which is located in /config/database.yml file
+inputs:                               # These inputs define the website's connectivity to the database. They are received from the blueprint 
+  - DB_USER: ''                       # and translated into environment variables that are available to the application. We use these 
+  - DB_PASS: ''                       # environment variables in the website's configuration which is located in /config/database.yml file
   - DB_NAME: '' 
-infrastructure:       # These are the infrastructure definitions for a single application instance
+infrastructure:                       # These are the infrastructure definitions for a single application instance
   connectivity:
     external:
     - port_info:
         path: ''
-        port: 3000              # Port 3000 will be opened externally to receive web requests
+        port: 3000                    # Port 3000 will be opened externally to receive web requests
 source:
   image:
-    ami:                        # This is a clean Ubuntu server image that will used to create a new EC2 instance in the selected AWS region
+    ami:                              # This is a clean Ubuntu server image that will be used to create a new EC2 instance in the defined AWS region
     - id: ami-f90a4880
       region: eu-west-1
-  os_type: linux
+  os_type: linux                      # AWS region
 configuration:
-  initialization:
-    script: rails_website.sh    # This script is executed when the infrastructure is ready, it downloads the website artifacts and installs the website with all of its dependencies
+  initialization:                     # The initialization script is executed when the infrastructure is ready
+    script: rails_website.sh          # This script downloads the website artifacts and installs it along with its dependencies
   start:
     script: rails_website-start.sh    # This script restarts the Webrick HTTP server after all the initialization completes
   healthcheck:

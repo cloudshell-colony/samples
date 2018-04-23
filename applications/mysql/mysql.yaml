@@ -1,28 +1,28 @@
 #   
-#   This application file defines how to deploy and configure MySQL server 
+#   This application file defines how to deploy and configure a MySQL server 
 #   
 #
 spec_version: 1
 kind: application
-inputs:                   # These inputs are used by the initialization script to set up a database administrator account
-  - DB_USER: '' 
-  - DB_PASS: '' 
-  - DB_NAME: '' 
-infrastructure:           #  These are the infrastructure definitions for a single mysql instance
+inputs:                     # These inputs are used by the initialization script, to set up a database administrator account
+  - DB_USER: ''
+  - DB_PASS: ''
+  - DB_NAME: ''
+infrastructure:             # These are the infrastructure definitions for a single mysql instance
   connectivity:   
     internal:
-    - port_info:           # Port 3306 will be opened internally to receive database requests
-        path: ''           # This port will not be opened to the internet, the database is kept secured 
+    - port_info:            # Port 3306 will be opened internally to receive database requests
+        path: ''            # This port will not be opened to the internet, the database is kept secured 
         port: 3306       
 source:
   image:
-    ami:                    # This is a clean Ubuntu server image that will used to create a new EC2 instance in the selected AWS region
+    ami:                    # This is a clean Ubuntu server image that will be used to create a new EC2 instance in the defined AWS region
     - id: ami-f90a4880
-      region: eu-west-1
+      region: eu-west-1     # AWS region
   os_type: linux
 configuration:
-  initialization:
-    script: mysql.sh        # This script is executed when the infrastructure is ready, it installs mysql on a clean Ubuntu OS, sets up a root account and creats an empty database for the application
+  initialization:           # The initialization script is executed when the infrastructure is ready
+    script: mysql.sh        # This script installs mysql on a clean Ubuntu OS, sets up a root account and creates an empty database for the application
   start:
     script: mysql-start.sh  # This script restarts the mysql.service process after the initialization completes
   healthcheck:
