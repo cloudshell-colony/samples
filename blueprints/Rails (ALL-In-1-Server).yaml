@@ -3,11 +3,12 @@
 #
 # [EC2 Instance: MySQL, Rails]
 #
-
+# Application source code: https://github.com/cloudshell-colony/sample_rails_source
+#
 spec_version: 1
 kind: blueprint
 metadata:
-  description: Ruby On Rails & MySQL deployed in a cheap ALL-in-1 server
+  description: Economic deployment of Ruby on Rails and MySQL on an ALL-IN-1 server
 clouds:
 - aws: eu-west-1
 inputs:                                  # These are the blueprint parameters and their default values. The values can be changed when creating a sandbox based on this blueprint.

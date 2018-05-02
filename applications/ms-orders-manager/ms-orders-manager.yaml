@@ -1,0 +1,26 @@
+#   
+#
+#
+#
+spec_version: 1
+kind: application
+infrastructure:                              # These are infrastructure definitions for a single application instance
+  connectivity:
+    internal:
+    - port_info:
+        path: ''
+        port: 3002                           # Port 3002 will be opened externally to receive web requests
+source:
+  image:
+    ami:                                     # This is a clean Ubuntu server image that will be used to create a new EC2 instance in the defined AWS region
+    - id: ami-f90a4880
+      region: eu-west-1                      # AWS region
+  os_type: linux
+configuration:
+  initialization:                            # The initialization script is executed when the infrastructure is ready
+    script: ms-orders-manager.sh                 # This script downloads the website artifacts and installs it along with its dependencies
+  start:
+    script: ms-orders-manager-start.sh           # This script starts the node application after the entire initialization is complete
+  healthcheck:
+      wait_for_ports: ALL                    # To validate the installation, we wait to see that all ports are available 
+      timeout: 180

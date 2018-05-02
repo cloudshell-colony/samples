@@ -4,11 +4,11 @@
 #            |
 #       [Back End]  (MySQL)
 #
-
+#
 spec_version: 1           
 kind: blueprint
 metadata:
-  description: A sample blueprint to demonstrate running a LAMP Wordpress stack.
+  description: LAMP WordPress stack (Linux, Apache, MySQL, PHP)
 clouds:
 - aws: eu-west-1
 inputs:                           # These are the blueprint parameters and their default values. The values can be changed when creating a sandbox based on this blueprint.
