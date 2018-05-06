@@ -25,16 +25,17 @@ inputs:                           # These are the blueprint parameters and their
 
 applications:                     # These are the applications that will be deployed in this blueprint:
   - mysql:                          # One instance of mysql (see: applications/mysql/mysql.yaml)
-    instances: 1
-    input_values:
-      - DB_USER: $DB_USER
-      - DB_PASS: $DB_PASS
-      - DB_NAME: $DB_NAME
+      instances: 1
+      input_values:
+        - DB_USER: $DB_USER
+        - DB_PASS: $DB_PASS
+        - DB_NAME: $DB_NAME
+        
   - java-spring-website:            # One instance of java-spring-website (see: applications/java-spring-website/java-spring-website.yaml)
-    instances: 1
-    input_values:
-      - DB_USER: $DB_USER
-      - DB_PASS: $DB_PASS
-      - DB_NAME: $DB_NAME
-    depends_on:                   # The website depends on MySQL and will start deploying only when the database is ready
-      - mysql
+      instances: 1
+      input_values:
+        - DB_USER: $DB_USER
+        - DB_PASS: $DB_PASS
+        - DB_NAME: $DB_NAME
+      depends_on:                   # The website depends on MySQL and will start deploying only when the database is ready
+        - mysql
