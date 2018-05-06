@@ -21,9 +21,9 @@ infrastructure:
   connectivity:
     external:
       - port_info:
-        path: ''
-        # Port 8080 will be opened externally to receive web requests
-        port: 8080
+          path: ''
+          # Port 8080 will be opened externally to receive web requests
+          port: 8080
 
 source:
   os_type: linux
