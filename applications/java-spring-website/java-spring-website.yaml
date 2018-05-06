@@ -43,7 +43,8 @@ configuration:
   # The start script contains the commands
   # needed to start the application process
   start:
-    script: java-spring-website-start.sh
+    command: >
+      systemctl restart tomcat8
   # We validate the app is listening on
   # the ports defined in the connectivity section
   # to validate it is up
