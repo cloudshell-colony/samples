@@ -1,34 +1,52 @@
-#   
-#   This application file defines how to deploy and configure a sample website, 
+#
+#   This application file defines how to deploy and configure
+#   a sample website.
 #   Developed with Java Spring, deployed on a TomCat web server
 #
+---
 spec_version: 1
 kind: application
 
-inputs:                                      # These inputs are used by the initialization script, to configure the connectivity to the database
-  - DB_USER                              # In the script we update the connectivity details which are located in the app.properties file
-  - DB_PASS 
-  - DB_NAME 
+# These inputs are used by the initialization script,
+# to configure the connectivity to the database
+# In our use case, the value will be provided from the Blueprint
+# using this application
+inputs:
+  - DB_USER
+  - DB_PASS
+  - DB_NAME
 
-infrastructure:                              # These are infrastructure definitions for a single application instance
+# We define the connectivity requirements and used ports
+infrastructure:
   connectivity:
     external:
-    - port_info:
+      - port_info:
         path: ''
-        port: 8080                           # Port 8080 will be opened externally to receive web requests
+        # Port 8080 will be opened externally to receive web requests
+        port: 8080
 
 source:
   os_type: linux
+  # Images for AWS are provided per region
   image:
-    ami:                                     # This is a clean Ubuntu server image that will be used to create a new EC2 instance in the defined AWS region
-    - id: ami-f90a4880
-      region: eu-west-1                      # AWS region
+    # This is a clean Ubuntu server image that will be used
+    # to create a new EC2 instance in the defined AWS region
+    ami:
+      - id: ami-f90a4880
+        region: eu-west-1
 
 configuration:
-  initialization:                            # The initialization script is executed when the infrastructure is ready
-    script: java-spring-website.sh           # This script downloads the website artifacts and installs it along with its dependencies
+  # The initialization script is intended to install
+  # app prerequisite and initialize the OS
+  initialization:
+    script: java-spring-website.sh
+  # The start script contains the commands
+  # needed to start the application process
   start:
-    script: java-spring-website-start.sh     # This script restarts the TomCat server after the entire initialization is complete
+    script: java-spring-website-start.sh
+  # We validate the app is listening on
+  # the ports defined in the connectivity section
+  # to validate it is up
   healthcheck:
-      wait_for_ports: ALL                    # To validate the installation, we wait to see that all ports are available 
-      timeout: 180
+    wait_for_ports: ALL
+    timeout: 180
