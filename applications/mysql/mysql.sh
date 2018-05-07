@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 # For Debugging (print env. variables, define command tracing)
 # set -o xtrace

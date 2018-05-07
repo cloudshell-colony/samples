@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 # For Debugging (print env. variables, define command tracing)
 # set -o xtrace
@@ -51,14 +51,14 @@ echo "****************************************************************"
 echo "Installing website (from artifacts) and retrieving dependencies"
 echo "****************************************************************"
 mkdir /home/artifacts
-cd /home/artifacts
+cd /home/artifacts || exit
 git clone https://github.com/cloudshell-colony/sample_rails_source.git
 
 mkdir /home/ubuntu/wwwroot;
 cp -a /home/artifacts/sample_rails_source/website/. /home/ubuntu/wwwroot
 
 
-cd /home/ubuntu/wwwroot
+cd /home/ubuntu/wwwroot || exit
 bundle install
 
 

@@ -32,10 +32,7 @@ clouds:
 
 applications:
   - ms-data-store:
-      instances: 1
-  - ms-api-gateway:
-      instances: 1
-  - ms-orders-manager:
-      instances: 1
-  - ms-payments-service:
-      instances: 1
+  #   instances: 1  # Change to deploy more instance of the ms
+  - ms-api-gateway
+  - ms-orders-manager
+  - ms-payments-service
