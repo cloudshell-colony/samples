@@ -15,10 +15,8 @@ Sample Blueprints and Applications demonstrating CloudShell Colony's various fea
 
 ## Using the samples
 
-The sample blueprints are already available in your 
-```
-$ python -m pip install shellfoundry
-```
+The sample blueprints are already available in you Colony account.
+To make changes, we recommend [forking this repository](https://github.com/cloudshell-colony/samples/fork) and adding it as your space BluePrint Repository.
 
 ## What's here?
 
