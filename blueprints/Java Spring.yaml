@@ -8,7 +8,6 @@
 # Application source code:
 # https://github.com/cloudshell-colony/sample_java_spring_source
 #
----
 spec_version: 1
 kind: blueprint
 
