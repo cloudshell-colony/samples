@@ -14,7 +14,6 @@ infrastructure:
     external:
       # Port 3000 will be opened externally to receive web requests
       - port_info:
-          path: ''
           port: 3000
 
 source:

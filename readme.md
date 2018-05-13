@@ -18,18 +18,21 @@ Sample Blueprints and Applications demonstrating CloudShell Colony's various fea
 The sample blueprints are already available in you Colony account.
 To make changes, we recommend [forking this repository](https://github.com/cloudshell-colony/samples/fork) and adding it as your space BluePrint Repository.
 
-## What's here?
+## Samples Blueprints
 
-```
-$ shellfoundry new nutshell
-```
-
-> For detailed usage information refer to [this guide](docs/usage.md)
-
+The following Blueprints are included in this repository:
+* Java Spring: A two tier application stack which contains a Java Spring website running on [Apache Tomcat](http://tomcat.apache.org/) and a [MySql](https://www.mysql.com/) database, deployed on separate instances.  
+* NodeJS Microservices: An architecture comprised of multiple microservices running on [NodeJS](https://nodejs.org/) and [Express](https://expressjs.com/). This application stack simulates an online orders application, which is also decribed in [this](https://medium.com/quali-techblog/my-journey-into-microservices-with-kubernetes-b4c59f9adb83) blog post. 
+* Rails (All-In-1-Server): This Blueprint represents a testing use case, where a [Ruby on Rails](https://rubyonrails.org/)application stack is launched on a single instance to save on costs. Note that this Blueprint utilizes the same applications as the other Rails examples but simply runs them in a different configuration (db and website on a single server). As a part of configuring the application on startup, the database is also migrated to the latest schema.
+* Rails (Basic-2-Node): The same [ROR](https://rubyonrails.org/) is in this blueprint deployed to a more production like two-node environment. The database and Rails server are launched in separate instances. This environment is used by integration tests which need to simulate the performance and connectivity contstraints of separating the application to more than one instance. As a part of configuring the application on startup, the database is also migrated to the latest schema.
+* Rails (Production-Like): In this Blueprint we launch the [ROR](https://rubyonrails.org/) architecture on a more scaled up environment with two server instances and a separate instance for the database. As a part of configuring the application on startup, the database is also migrated to the latest schema.
+* Wordpress (LAMP): A Wordpress website LAMP stack (Linux, Apache, MySQL, PHP). 
 
 ## Troubleshooting and Help
 
-For questions, bug reports or feature requests, please refer to the [Issue Tracker](https://github.com/QualiSystems/shellfoundry/issues).  Also, make sure you check out our [Issue Template](.github/issue_template.md).
+For questions, bug reports or feature requests, please submit your feedback through the CloudShell Colony help widget.
+More information about Blueprint development principles, examples and best practices can be found in the [CloudShell Colony Help Center website](http://colonysupport.quali.com)
+
 
 ## Contributing
 
@@ -39,15 +42,7 @@ All your contributions are welcomed and encouraged.  We've compiled detailed inf
 * [Contributing](.github/contributing.md)
 * [Creating Pull Requests](.github/pull_request_template.md)
 
-
-## Dependencies
-
-Development of **ShellFoundry** would not have been possible without the open source libraries it depends on:
-
-- [cookiecutter](https://github.com/audreyr/cookiecutter)
-- [requests](http://docs.python-requests.org/)
-- [click](http://click.pocoo.org/5/)
-- [pyyaml](http://pyyaml.org/)
+Please make sure to Lint your YAML and Bash scripts as the Pull Request would otherwise not pass initial validation. 
 
 ## License
 [Apache License 2.0](https://github.com/QualiSystems/shellfoundry/blob/master/LICENSE)

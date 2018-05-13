@@ -28,7 +28,6 @@ inputs:
 
 applications:
   - mysql:  # One instance of MySQL (see: applications/mysql/mysql.yaml)
-      instances: 1
       input_values:
         - DB_USER: $DB_USER
         - DB_PASS: $DB_PASS

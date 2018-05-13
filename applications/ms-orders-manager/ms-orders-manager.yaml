@@ -13,7 +13,6 @@ infrastructure:
   connectivity:
     internal:
       - port_info:
-          path: ''
           # Port 3002 will be opened externally to receive web requests
           port: 3002
 

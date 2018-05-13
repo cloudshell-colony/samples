@@ -15,7 +15,6 @@ infrastructure:
     # to receive web requests
     internal:
       - port_info:
-          path: ''
           port: 3004
 
 source:
