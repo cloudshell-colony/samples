@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 echo "****************************************************************"
 echo "For Debugging (print env. variables, define command tracing)"
@@ -43,7 +43,7 @@ rm /var/www/html/index.html
 echo "****************************************************************"
 echo "Configuring database access"
 echo "****************************************************************"
-cd /var/www/html
+cd /var/www/html || exit
 mv wp-config-sample.php wp-config.php
 
 sed -i "s/database_name_here/$DB_NAME/g" wp-config.php

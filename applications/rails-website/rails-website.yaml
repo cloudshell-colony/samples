@@ -1,30 +1,51 @@
-#   
-#   This application file defines how to deploy and configure a sample website, 
-#   developed with Ruby On Rails, deployed on a Webrick HTTP server
 #
+#   This application file defines how to deploy and
+#   configure a sample website, developed with Ruby On Rails
+#   deployed on a Webrick HTTP server
+#
+---
 spec_version: 1
 kind: application
-inputs:                               # These inputs define the website's connectivity to the database. They are received from the blueprint 
-  - DB_USER: ''                       # and translated into environment variables that are available to the application. We use these 
-  - DB_PASS: ''                       # environment variables in the website's configuration which is located in /config/database.yml file
-  - DB_NAME: '' 
-infrastructure:                       # These are the infrastructure definitions for a single application instance
+
+# These inputs define the website's connectivity to the database.
+# They are received from the blueprint and available to the
+# configuration scripts as environment variables.
+inputs:
+  - DB_USER
+  - DB_PASS
+  - DB_NAME
+
+# This section defines the infrastructure requirements
+# for the application
+infrastructure:
   connectivity:
     external:
-    - port_info:
-        path: ''
-        port: 3000                    # Port 3000 will be opened externally to receive web requests
+      # Port 3000 will be opened externally to receive web requests
+      - port_info:
+          port: 3000
+
 source:
+  os_type: linux
   image:
-    ami:                              # This is a clean Ubuntu server image that will be used to create a new EC2 instance in the defined AWS region
-    - id: ami-f90a4880
-      region: eu-west-1
-  os_type: linux                      # AWS region
+    # This is a clean Ubuntu server image that will be used to
+    # create a new EC2 instance in the defined AWS region
+    ami:
+      - id: ami-f90a4880
+        region: eu-west-1
+
 configuration:
-  initialization:                     # The initialization script is executed when the infrastructure is ready
-    script: rails_website.sh          # This script downloads the website artifacts and installs it along with its dependencies
+  # The initialization script is intended to install
+  # app prerequisite and initialize the OS
+  # This script downloads the website artifacts and installs it
+  # along with its dependencies
+  initialization:
+    script: rails_website.sh
+  # This script restarts the Webrick HTTP server after
+  # the initialization completes
   start:
-    script: rails_website-start.sh    # This script restarts the Webrick HTTP server after all the initialization completes
+    script: rails_website-start.sh
+  # To validate the installation, we wait to see
+  # that all ports are available
   healthcheck:
-      wait_for_ports: ALL             # To validate the installation, we wait to see that the ports are available 
-      timeout: 500
+    wait_for_ports: ALL
+    timeout: 500

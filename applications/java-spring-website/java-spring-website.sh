@@ -1,4 +1,4 @@
-
+#!/usr/bin/env bash
 
 # For Debugging (print env. variables, define command tracing)
 # set -o xtrace
@@ -31,7 +31,7 @@ echo "****************************************************************"
 echo "Get the web application from github"
 echo "****************************************************************"
 mkdir /home/artifacts
-cd /home/artifacts
+cd /home/artifacts || exit
 git clone https://github.com/cloudshell-colony/sample_java_spring_source.git
 
 

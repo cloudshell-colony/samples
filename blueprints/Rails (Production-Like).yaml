@@ -1,4 +1,3 @@
-
 # Ruby on Rails Website deployed on 1 EC2 instance for the database server
 # and multiple instances as front ends controlled with AWS AutoScalingGroup
 #
@@ -6,30 +5,43 @@
 #            |
 #       [Back End]  (MySQL)
 #
-# Application source code: https://github.com/cloudshell-colony/sample_rails_source
+# Application source
+# code: https://github.com/cloudshell-colony/sample_rails_source
 #
+---
 spec_version: 1
 kind: blueprint
+
 metadata:
-  description: Ruby On Rails & MySQL deployed with Autoscaling & Load Balancing
+  description: >
+    Ruby On Rails & MySQL deployed with Autoscaling & Load Balancing
+
 clouds:
-- aws: eu-west-1
-inputs:                               # These are the blueprint parameters and their default values. The values can be changed when creating a sandbox based on this blueprint.
-  - DB_USER: root                     # DB_USER, DB_PASS - Used to define the admin account when installing the database
-  - DB_PASS: 123456                   
-  - DB_NAME: railsapp_development     # DB_NAME - a target database name, used when creating a new database and connecting it to the application
-applications:                         # These are the applications that will be deployed in this blueprint:
-- mysql:                              # One instance of MySQL (see: applications/mysql/mysql.yaml)
-    instances: 1
-    input_values:
-    - DB_USER: $DB_USER
-    - DB_PASS: $DB_PASS
-    - DB_NAME: $DB_NAME
-- rails-website:                     # Three instances of rails-website (see: applications/rails-website/rails-website.yaml)
-    instances: 3
-    input_values:
-    - DB_USER: $DB_USER
-    - DB_PASS: $DB_PASS
-    - DB_NAME: $DB_NAME
-    depends_on:                      # The website depends on MySQL and will start deploying only when the database is ready
-    - mysql
+  - aws: eu-west-1
+
+# These are the blueprint parameters and their default values.
+# The values can be changed when creating a sandbox based on
+# this blueprint.
+inputs:
+  - DB_USER: root  # Used to define the db admin account
+  - DB_PASS: 123456  # Used to define the db admin password
+  - DB_NAME: railsapp_development  # DB_NAME - a target database name
+
+applications:
+  - mysql:  # One instance of MySQL (see: applications/mysql/mysql.yaml)
+      input_values:
+        - DB_USER: $DB_USER
+        - DB_PASS: $DB_PASS
+        - DB_NAME: $DB_NAME
+  # Three instances of rails-website
+  # (see: applications/rails-website/rails-website.yaml )
+  - rails-website:
+      instances: 3  # Define the number of instances to be deployed
+      input_values:
+        - DB_USER: $DB_USER
+        - DB_PASS: $DB_PASS
+        - DB_NAME: $DB_NAME
+      # The website depends on MySQL and will start deploying only
+      # when the database is ready
+      depends_on:
+        - mysql

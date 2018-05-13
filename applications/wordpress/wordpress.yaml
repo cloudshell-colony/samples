@@ -1,29 +1,46 @@
-#   
-#   This application file defines how to deploy and configure a Wordpress application 
 #
+#   This application file defines how to deploy and
+#   configure a Wordpress application
+#
+---
 spec_version: 1
 kind: application
-inputs:                             # These inputs are used by the initialization script to configure the connectivity to the database
-  - DB_USER: ''                     # In the script we update the connectivity details which are located in /var/www/html/wp-config.php
-  - DB_PASS: '' 
-  - DB_NAME: '' 
-infrastructure:                     # These are the infrastructure definitions for a single application instance
+
+# These inputs are used by the initialization script to
+# configure the connectivity to the database
+# In the script we update the connectivity details which
+# are located in /var/www/html/wp-config.php
+inputs:
+  - DB_USER
+  - DB_PASS
+  - DB_NAME
+infrastructure:
+  # Port 80 will be opened externally to receive web requests
   connectivity:
-    external:           
-    - port_info:        
-        path: ''
-        port: 80                    # Port 80 will be opened externally to receive web requests
+    external:
+      - port_info:
+          port: 80
+
+# This is a clean Ubuntu server image that will be
+# used to create a new EC2 instance in the defined AWS region
 source:
-  image:
-    ami:                            # This is a clean Ubuntu server image that will be used to create a new EC2 instance in the defined AWS region
-    - id: ami-f90a4880
-      region: eu-west-1             # AWS region
   os_type: linux
-configuration:                    
-  initialization:                   # The initialization script is executed when the infrastructure is ready
-    script: wordpress.sh            # This script installs wordpress on a clean Ubuntu OS.
+  image:
+    ami:
+      - id: ami-f90a4880
+        region: eu-west-1
+
+configuration:
+  # The initialization script is intended to install
+  # app prerequisite and initialize the OS
+  # This script installs wordpress on a clean Ubuntu OS.
+  initialization:
+    script: wordpress.sh
+  # This command restarts the Apache server after the initialization completes
   start:
-    script: wordpress-start.sh      # This script restarts the Apache server after all the initialization completes
-  healthcheck:                      
-      wait_for_ports: ALL           # To validate the installation, we wait to see that the ports are available 
-      timeout: 180
+    command: >
+      systemctl restart apache2.service
+  # To validate the installation, we wait to see that the ports are available
+  healthcheck:
+    wait_for_ports: ALL
+    timeout: 180

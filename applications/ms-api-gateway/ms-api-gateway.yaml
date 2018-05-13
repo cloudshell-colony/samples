@@ -1,26 +1,42 @@
-#   
 #
+#   This application file defines how to deploy and configure
+#   a node API micro-service.
+#   Developed with node.js
 #
-#
+---
 spec_version: 1
 kind: application
-infrastructure:                              # These are infrastructure definitions for a single application instance
+
+# This section defines the infrastructure requirements
+# for the application
+infrastructure:
   connectivity:
     external:
-    - port_info:
-        path: ''
-        port: 3000                           # Port 3000 will be opened externally to receive web requests
+      # Port 3000 will be opened externally to receive web requests
+      - port_info:
+          port: 3000
+
 source:
-  image:
-    ami:                                     # This is a clean Ubuntu server image that will be used to create a new EC2 instance in the defined AWS region
-    - id: ami-f90a4880
-      region: eu-west-1                      # AWS region
   os_type: linux
+  image:
+    # This is a clean Ubuntu server image that will be used
+    # to create a new EC2 instance in the defined AWS region
+    ami:
+      - id: ami-f90a4880
+        region: eu-west-1
+
 configuration:
-  initialization:                            # The initialization script is executed when the infrastructure is ready
-    script: ms-api-gateway.sh                # This script downloads the website artifacts and installs it along with its dependencies
+  # The initialization script is intended to install
+  # app prerequisite and initialize the OS
+  initialization:
+    script: ms-api-gateway.sh
+  # The start script contains the commands
+  # needed to start the application process
   start:
-    script: ms-api-gateway-start.sh          # This script starts the node application after the entire initialization is complete
+    script: ms-api-gateway-start.sh
+  # We validate the app is listening on
+  # the ports defined in the connectivity section
+  # to validate it is up
   healthcheck:
-      wait_for_ports: ALL                    # To validate the installation, we wait to see that all ports are available 
-      timeout: 180
+    wait_for_ports: ALL
+    timeout: 180
