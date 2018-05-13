@@ -1,6 +1,5 @@
 ---
-![logo](logo.png)
-
+<img src="logo.png" height="400">
 ![BuildStatus](http://tc.quali.com/app/rest/builds/aggregated/strob:(buildType:(id:Colony_Samples_ValidateSamples))/statusIcon.svg)
 
 # CloudShell Colony Samples
