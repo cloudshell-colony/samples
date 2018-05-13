@@ -1,5 +1,6 @@
 ---
 ![logo](logo.png)
+<img src="https://github.com/favicon.ico" width="48">
 
 # CloudShell Colony Samples
 
