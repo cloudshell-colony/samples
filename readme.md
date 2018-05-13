@@ -1,5 +1,6 @@
 ---
 ![logo](logo.png)
+
 ![BuildStatus](http://tc.quali.com/app/rest/builds/aggregated/strob:(buildType:(id:Colony_Samples_ValidateSamples))/statusIcon.svg)
 
 # CloudShell Colony Samples
@@ -27,7 +28,7 @@ The following Blueprints are included in this repository:
 * <img src="/images/rails.png" width="25"> Rails (All-In-1-Server): This Blueprint represents a testing use case, where a [Ruby on Rails](https://rubyonrails.org/) application stack is launched on a single instance to save on costs. Note that this Blueprint utilizes the same applications as the other Rails examples but simply runs them in a different configuration (db and website on a single server). As a part of configuring the application on startup, the database is also migrated to the latest schema.
 * <img src="/images/rails.png" width="25"> Rails (Basic-2-Node): The same [ROR](https://rubyonrails.org/) is in this blueprint deployed to a more production like two-node environment. The database and Rails server are launched in separate instances. This environment is used by integration tests which need to simulate the performance and connectivity contstraints of separating the application to more than one instance. As a part of configuring the application on startup, the database is also migrated to the latest schema.
 * <img src="/images/rails.png" width="25"> Rails (Production-Like): In this Blueprint we launch the [ROR](https://rubyonrails.org/) architecture on a more scaled up environment with two server instances and a separate instance for the database. As a part of configuring the application on startup, the database is also migrated to the latest schema.
-* <img src="/images/Wordpress.svg.png" width="25"> Wordpress (LAMP): A Wordpress website LAMP stack (Linux, Apache, MySQL, PHP). This example sets up and configures a Wordpress server with some default content.  
+* <img src="/images/Wordpress.png" width="25"> Wordpress (LAMP): A Wordpress website LAMP stack (Linux, Apache, MySQL, PHP). This example sets up and configures a Wordpress server with some default content.  
 
 ## Troubleshooting and Help
 
