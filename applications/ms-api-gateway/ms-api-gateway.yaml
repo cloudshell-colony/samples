@@ -10,6 +10,13 @@ kind: application
 # This section defines the infrastructure requirements
 # for the application
 infrastructure:
+  # Specify the compute requirement for this app
+  # if we don't specify anything the default will be used
+  compute:
+    spec:
+      aws:
+        instance_type: t2.nano
+
   connectivity:
     external:
       # Port 3000 will be opened externally to receive web requests

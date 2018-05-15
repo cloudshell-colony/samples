@@ -10,6 +10,13 @@ kind: application
 # These are infrastructure definitions for a single
 # application instance
 infrastructure:
+  # Specify the compute requirement for this app
+  # if we don't specify anything the default will be used
+  compute:
+    spec:
+      aws:
+        instance_type: t2.nano
+
   connectivity:
     # Port 3004 will be opened externally
     # to receive web requests
