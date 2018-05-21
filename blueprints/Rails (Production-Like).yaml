@@ -24,7 +24,10 @@ clouds:
 # this blueprint.
 inputs:
   - DB_USER: root  # Used to define the db admin account
-  - DB_PASS: 123456  # Used to define the db admin password
+  - DB_PASS:
+      display_style: masked
+      description: please set the root database passwor
+      default_value: 12345  # Used to define the db admin password
   - DB_NAME: railsapp_development  # DB_NAME - a target database name
 
 applications:

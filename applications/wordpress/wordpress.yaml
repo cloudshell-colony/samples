@@ -15,6 +15,13 @@ inputs:
   - DB_PASS
   - DB_NAME
 infrastructure:
+  # Specify the compute requirement for this app
+  # if we don't specify anything the default will be used
+  compute:
+    spec:
+      aws:
+        instance_type: t2.nano
+
   # Port 80 will be opened externally to receive web requests
   connectivity:
     external:
