@@ -20,7 +20,7 @@ infrastructure:
   compute:
     spec:
       aws:
-        instance_type: t2.small
+        instance_type: t2.medium
 
   # Port 80 will be opened externally to receive web requests
   connectivity:
