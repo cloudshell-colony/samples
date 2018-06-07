@@ -21,7 +21,7 @@ infrastructure:
   compute:
     spec:
       aws:
-        instance_type: t2.nano
+        instance_type: t2.small
 
   connectivity:
     # Port 3306 will be opened internally to receive database requests
