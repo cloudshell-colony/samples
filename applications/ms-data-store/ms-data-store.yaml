@@ -50,5 +50,5 @@ configuration:
     wait_for_ports: ALL
     timeout: 180
 
-debugging: 
+debugging:
   connection_protocol: SSH
