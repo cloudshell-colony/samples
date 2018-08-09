@@ -56,3 +56,6 @@ configuration:
   healthcheck:
     wait_for_ports: ALL
     timeout: 500
+
+debugging: 
+  connection_protocol: SSH
