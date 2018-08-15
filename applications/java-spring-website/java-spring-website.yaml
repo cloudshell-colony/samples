@@ -41,6 +41,7 @@ source:
     ami:
       - id: ami-f90a4880
         region: eu-west-1
+        username: ubuntu
 
 configuration:
   # The initialization script is intended to install
