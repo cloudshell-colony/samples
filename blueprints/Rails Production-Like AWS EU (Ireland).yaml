@@ -1,0 +1,50 @@
+# Ruby on Rails Website deployed on 1 EC2 instance for the database server
+# and multiple instances as front ends controlled with AWS AutoScalingGroup
+#
+#       [Front End],[Front End],[Front End]...[Front End] (Rails, Ruby, Webrick)
+#            |
+#       [Back End]  (MySQL)
+#
+# Application source
+# code: https://github.com/cloudshell-colony/sample_rails_source
+#
+---
+spec_version: 1
+kind: blueprint
+
+metadata:
+  description: >
+    Ruby On Rails & MySQL deployed with Autoscaling & Load Balancing
+
+clouds:
+  - aws: eu-west-1
+
+# These are the blueprint parameters and their default values.
+# The values can be changed when creating a sandbox based on
+# this blueprint.
+inputs:
+  - DB_USER: root  # Used to define the db admin account
+  - DB_PASS:
+      display_style: masked
+      description: please set the root database passwor
+      default_value: 12345  # Used to define the db admin password
+  - DB_NAME: railsapp_development  # DB_NAME - a target database name
+
+applications:
+  - mysql:  # One instance of MySQL (see: applications/mysql/mysql.yaml)
+      input_values:
+        - DB_USER: $DB_USER
+        - DB_PASS: $DB_PASS
+        - DB_NAME: $DB_NAME
+  # Three instances of rails-website
+  # (see: applications/rails-website/rails-website.yaml )
+  - rails-website:
+      instances: 3  # Define the number of instances to be deployed
+      input_values:
+        - DB_USER: $DB_USER
+        - DB_PASS: $DB_PASS
+        - DB_NAME: $DB_NAME
+      # The website depends on MySQL and will start deploying only
+      # when the database is ready
+      depends_on:
+        - mysql

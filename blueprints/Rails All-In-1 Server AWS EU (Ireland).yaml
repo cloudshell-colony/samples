@@ -1,0 +1,49 @@
+# Ruby on Rails Website deployed on a single EC2 instance
+#
+# [EC2 Instance: MySQL, Rails]
+#
+# Application source code:
+# https://github.com/cloudshell-colony/sample_rails_source
+#
+---
+spec_version: 1
+kind: blueprint
+metadata:
+  description: >
+    Economic deployment of Ruby on Rails and MySQL on an ALL-IN-1 server
+
+clouds:
+  - aws: eu-west-1
+
+# These are the blueprint parameters and their default values.
+# The values can be changed when creating a sandbox based on this
+# blueprint.
+inputs:
+  - DB_USER: root  # Used to define the db admin account
+  - DB_PASS:
+      display_style: masked
+      description: please set the root database passwor
+      default_value: 12345  # Used to define the db password
+  - DB_NAME: railsapp_development  # DB_NAME - a target database name
+
+applications:
+  - mysql:  # One instance of mysql (see: applications/mysql/mysql.yaml)
+      # By providing a target name: 'vm1', we can deploy
+      # mutiple applications to the same instance (container or vm)
+      target: vm1
+      input_values:
+        - DB_USER: $DB_USER
+        - DB_PASS: $DB_PASS
+        - DB_NAME: $DB_NAME
+  # Rails-website app (see: applications/rails-website/rails-website.yaml)
+  - rails-website:
+      # We'll run this application on the same instance as mysql
+      target: vm1
+      input_values:
+        - DB_USER: $DB_USER
+        - DB_PASS: $DB_PASS
+        - DB_NAME: $DB_NAME
+      # The website depends on MySQL and will start deploying
+      # only when the database is ready
+      depends_on:
+        - mysql

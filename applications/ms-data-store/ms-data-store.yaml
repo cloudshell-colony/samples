@@ -16,6 +16,8 @@ infrastructure:
     spec:
       aws:
         instance_type: t2.medium
+      azure:
+        vm_size: Basic_A2
 
   connectivity:
     # Port 3004 will be opened externally
@@ -34,6 +36,12 @@ source:
       - id: ami-f90a4880
         region: eu-west-1
         username: ubuntu
+    azure_image:
+      - urn: Canonical:UbuntuServer:16.04-LTS:latest
+        username: ubuntu
+    docker_image:
+    - tag: 16.04
+      name: ubuntu
 
 configuration:
   # The initialization script is intended to install

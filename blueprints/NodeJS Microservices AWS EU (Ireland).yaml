@@ -1,0 +1,38 @@
+# A Website using a microservices architecture developed with Node
+# JS and Express JS.
+# Deployed in AWS with 1 instance per service.
+
+# 4 Micro Services: API GATEWAY, ORDERS, PAYMENTS, DATA-STORE
+
+# In this sample all the microservices are deployed Simultaneously.
+# Their integration is done by using the sandbox Local
+# DNS service (see the applications start scripts to see how
+# we connect them)
+# These are their dependencies:
+#     DATA-STORE > stands on its own
+#     API GATEWAY > integrates with: ORDERS, PAYMENTS
+#     ORDERS > integrates with : PAYMENTS, DATA-STORE
+#     PAYMENTS > integrates with: DATA-STORE
+#
+
+# Application source code:
+# https://github.com/cloudshell-colony/sample_micro_services_nodejs_source
+#
+---
+spec_version: 1
+kind: blueprint
+
+metadata:
+  description: >
+    NodeJS / Express application built with a
+    Microservices architecture
+
+clouds:
+  - aws: eu-west-1
+
+applications:
+  - ms-data-store:
+  #   instances: 1  # Change to deploy more instance of the ms
+  - ms-api-gateway
+  - ms-orders-manager
+  - ms-payments-service
