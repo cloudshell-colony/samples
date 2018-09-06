@@ -4,5 +4,5 @@ echo "****************************************************************"
 echo "Starting Rails Server"
 echo "****************************************************************"
 
-cd /home/ubuntu/wwwroot || exit
+cd /home/artifacts/sample_rails_source/website || exit
 rails server --binding=localhost
