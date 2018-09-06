@@ -6,3 +6,4 @@ echo "****************************************************************"
 
 cd /home/artifacts/sample_rails_source/website || exit
 rails server --binding=localhost
+
