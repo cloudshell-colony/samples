@@ -38,7 +38,7 @@ source:
         username: ubuntu
     azure_image:
       - urn: Canonical:UbuntuServer:16.04-LTS:latest
-        username: ubuntu
+        username: adminuser
     docker_image:
     - tag: 16.04
       name: ubuntu
