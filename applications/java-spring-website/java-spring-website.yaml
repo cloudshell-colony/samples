@@ -48,8 +48,8 @@ source:
       - urn: Canonical:UbuntuServer:16.04-LTS:latest
         username: adminuser
     docker_image:
-    - tag: 16.04
-      name: ubuntu
+      - tag: 16.04
+        name: ubuntu
 
 configuration:
   # The initialization script is intended to install
