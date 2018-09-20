@@ -5,7 +5,8 @@
 spec_version: 1
 kind: application
 
-# These inputs are used by the initialization script to set up a database administrator account
+# These inputs are used by the initialization script to set up
+# a database administrator account
 inputs:
   - DB_USER
   - DB_PASS
