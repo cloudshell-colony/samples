@@ -28,7 +28,7 @@ metadata:
     Microservices architecture
 
 clouds:
-    - azure: westus
+  - azure: westus
 
 applications:
   - ms-data-store:

@@ -17,7 +17,7 @@ metadata:
     Ruby On Rails & MySQL deployed with Autoscaling & Load Balancing
 
 clouds:
-    - azure: westus
+  - azure: westus
 
 # These are the blueprint parameters and their default values.
 # The values can be changed when creating a sandbox based on
