@@ -13,7 +13,7 @@ metadata:
     Economic deployment of Ruby on Rails and MySQL on an ALL-IN-1 server
 
 clouds:
-  - aws: eu-west-1
+  - AWS: eu-west-1
 
 # These are the blueprint parameters and their default values.
 # The values can be changed when creating a sandbox based on this
