@@ -14,7 +14,7 @@ kind: blueprint
 
 metadata:
   description: >
-    A Java Spring website deployed on a TomCat
+    A Java Spring website deployed on a Tomcat
     server and MySQL database
 
 clouds:
@@ -27,7 +27,7 @@ inputs:
   - DB_USER: root  # Used to define the db admin account
   - DB_PASS:
       display_style: masked
-      description: please set the root database passwor
+      description: please set the root database password
       default_value: 12345
   # Used to define the db admin password
   - DB_NAME: demo_db  # DB_NAME - a target database name
