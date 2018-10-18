@@ -1,12 +1,12 @@
 #!/usr/bin/env bash
 
 # For Debugging (print env. variables, define command tracing)
- echo "Xtrace"
- set -o xtrace
- echo "ENV"
+ #echo "Xtrace"
+ #set -o xtrace
+ echo "Environment Variables:"
  env
- echo "SET"
- set
+ #echo "SET"
+ #set
 
 echo "****************************************************************"
 echo "Updating System"
