@@ -1,12 +1,8 @@
 #!/usr/bin/env bash
 
-# For Debugging (print env. variables, define command tracing)
- #echo "Xtrace"
- #set -o xtrace
- echo "Environment Variables:"
- env
- #echo "SET"
- #set
+# For Debugging (print env. variables into a file)  
+ printenv > colony-vars-$(basename $BASH_SOURCE)
+ 
 
 echo "****************************************************************"
 echo "Updating System"
