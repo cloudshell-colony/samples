@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 # For Debugging (print env. variables into a file)  
- printenv > $ARTIFACTS_PATH/colony-vars.txt
+ printenv > "$ARTIFACTS_PATH"/colony-vars.txt
  
 
 echo "****************************************************************"
