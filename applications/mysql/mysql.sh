@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 # For Debugging (print env. variables into a file)  
- printenv > "$ARTIFACTS_PATH"/colony-vars.txt
+ printenv > ~/colony-vars-"$(basename "$BASH_SOURCE")"
  
 
 echo "****************************************************************"
