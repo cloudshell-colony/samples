@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 # For Debugging (print env. variables into a file)  
- printenv > ~/colony-vars-"$(basename "$BASH_SOURCE")"
+printenv > ~/colony-vars-"$(basename "$BASH_SOURCE" .sh)".txt
  
 
 echo "****************************************************************"
