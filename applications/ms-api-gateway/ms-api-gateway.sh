@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
 
+# For Debugging (print env. variables into a file)  
+printenv > /var/log/colony-vars-"$(basename "$BASH_SOURCE" .sh)".txt
+
 # Update packages and Upgrade system
 echo "****************************************************************"
 echo "Updating System"
