@@ -1,11 +1,7 @@
 #!/usr/bin/env bash
 
-echo "****************************************************************"
-echo "For Debugging (print env. variables, define command tracing)"
-echo "****************************************************************"
-#set -o xtrace
-#env
-#set
+# For Debugging (print env. variables into a file)  
+printenv > /var/log/colony-vars-"$(basename "$BASH_SOURCE" .sh)".txt
 
 # Update packages and Upgrade system
 echo "****************************************************************"
