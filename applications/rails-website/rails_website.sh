@@ -25,13 +25,7 @@ echo "****************************************************************"
 echo "Installing Ruby"
 echo "****************************************************************"
 apt-get install ruby-full -y 
-ruby -v  # checking ruby by printing the installed version
-
-
-echo "****************************************************************"
-echo "Installing NodeJS"
-echo "****************************************************************"
-apt-get install nodejs -y
+echo 'gem: --no-document' >> ~/.gemrc
 
 
 echo "****************************************************************"
@@ -53,10 +47,11 @@ echo "Installing website (from artifacts) and retrieving dependencies"
 echo "****************************************************************"
 mkdir /home/artifacts
 cd /home/artifacts || exit
-git clone https://github.com/cloudshell-colony/sample_rails_source.git
+#git clone https://github.com/cloudshell-colony/sample_rails_source.git
+git clone https://github.com/menib/sample_rails_source.git
 
 cd /home/artifacts/sample_rails_source/website || exit
-bundle install
+bundle install --jobs 4
 
 
 echo "****************************************************************"
