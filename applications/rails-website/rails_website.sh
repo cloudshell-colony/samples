@@ -26,7 +26,7 @@ echo "Installing Ruby"
 echo "****************************************************************"
 apt-get install ruby-full -y 
 echo 'gem: --no-document' >> ~/.gemrc
-#gem update --system
+gem update --system
 
 echo "****************************************************************"
 echo "Installing Rails"
