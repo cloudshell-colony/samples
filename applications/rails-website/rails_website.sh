@@ -50,7 +50,7 @@ git clone https://github.com/cloudshell-colony/sample_rails_source.git
 
 
 cd /home/artifacts/sample_rails_source/website || exit
-bundle install --jobs 4
+bundle install 
 
 
 echo "****************************************************************"
