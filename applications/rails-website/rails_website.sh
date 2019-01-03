@@ -31,8 +31,7 @@ gem update --system
 echo "****************************************************************"
 echo "Installing Rails"
 echo "****************************************************************"
-gem install rails
-
+gem install rails -v 3.0.1
 
 echo "****************************************************************"
 echo "Installing MySQL Client"
