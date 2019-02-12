@@ -47,3 +47,4 @@ Please make sure to Lint your YAML and Bash scripts as the Pull Request would ot
 
 ## License
 [Apache License 2.0](https://github.com/QualiSystems/shellfoundry/blob/master/LICENSE)
+
