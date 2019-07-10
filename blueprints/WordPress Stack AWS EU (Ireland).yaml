@@ -46,4 +46,4 @@ applications:
         - mysql
 
 debugging:
-  availability: on
+  availability: 'on'
