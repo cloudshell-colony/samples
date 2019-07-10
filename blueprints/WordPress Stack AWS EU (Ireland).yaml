@@ -44,3 +44,6 @@ applications:
       # only when the database is ready
       depends_on:
         - mysql
+
+debugging:
+  availability: 'on'
