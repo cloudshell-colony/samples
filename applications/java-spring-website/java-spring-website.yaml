@@ -15,6 +15,7 @@ inputs:
   - DB_USER
   - DB_PASS
   - DB_NAME
+  - DB_HOSTNAME: none
 
 # This section defines the infrastructure requirements
 # for the application
@@ -66,7 +67,7 @@ configuration:
   # to validate it is up
   healthcheck:
     wait_for_ports: ALL
-    timeout: 180
+    timeout: 600
 
 debugging:
   connection_protocol: SSH
