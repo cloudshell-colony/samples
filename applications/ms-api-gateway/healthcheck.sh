@@ -1,3 +1,4 @@
+#!/bin/bash
 
 ip=$1
 port=3000
