@@ -55,4 +55,4 @@ services:
         - DB_USER: $DB_USER
         - DB_PASS: $DB_PASS
         - SANDBOX_ID: $COLONY.SandboxId
-        - VPC_ID: $COLONY.VirtualNetworkId   # Sandbox VPC Id
+        - VPC_ID: $COLONY.VirtualNetworkId  # Sandbox VPC Id
