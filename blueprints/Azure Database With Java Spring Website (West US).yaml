@@ -29,7 +29,8 @@ inputs:
       display_style: masked
       description: >
         Database server password must contain from 8 to 128 characters.
-        Your password must contain characters from three of the following categories:
+        Your password must contain characters from
+        three of the following categories:
         English uppercase letters, English lowercase letters, numbers (0-9),
         and non-alphanumeric characters (!, $, #, %, and so on)
       default_value: sv4YPTPs7fN&
@@ -64,7 +65,8 @@ applications:
       depends_on:
         - azure-mysql
 services:
-  - azure-mysql:  # Instance of azure database mysql (see: services/azure-mysql/azure-mysql.yaml)
+  # Instance of azure database mysql (see: services/azure-mysql/azure-mysql.yaml)
+  - azure-mysql:
       input_values:
         - DB_NAME: $DB_NAME
         - DB_USER: $DB_USER
