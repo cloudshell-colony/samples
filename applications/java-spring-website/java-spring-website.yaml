@@ -16,6 +16,7 @@ inputs:
   - DB_PASS
   - DB_NAME
   - DB_HOSTNAME: none
+  - USE_SSL: false
 
 # This section defines the infrastructure requirements
 # for the application
