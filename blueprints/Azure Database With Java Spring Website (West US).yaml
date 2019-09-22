@@ -1,0 +1,79 @@
+# A Java Spring website deployed on a TomCat server and a
+# MySQL database deployed on two Azure VMs
+#
+#       [Front End] (Java, Tomcat)
+#            |
+#       [Back End]  (MySQL)
+#
+# Application source code:
+# https://github.com/cloudshell-colony/sample_java_spring_source
+#
+---
+spec_version: 1
+kind: blueprint
+
+metadata:
+  description: >
+    A Java Spring website deployed on a TomCat
+    server and MySQL database
+
+clouds:
+  - azure: westus
+
+# These are the blueprint parameters and their default values.
+# The values can be changed when creating a sandbox based on this
+# blueprint.
+inputs:
+  - DB_USER: colony  # Used to define the db admin account
+  - DB_PASS:
+      display_style: masked
+      description: >
+        Database server password must contain from 8 to 128 characters.
+        Your password must contain characters from
+        three of the following categories:
+        English uppercase letters, English lowercase letters, numbers (0-9),
+        and non-alphanumeric characters (!, $, #, %, and so on)
+      default_value: sv4YPTPs7fN&
+  # Used to define the db admin password
+  - DB_NAME: demo_db  # DB_NAME - a target database name
+  - AZURE_CLIENT_ID:
+      display_style: normal
+      description: please set the client id (Application ID) for authentication
+  - AZURE_CLIENT_SECRET:
+      display_style: masked
+      description: please set the client secrete for authentication
+  - AZURE_SUBSCRIPTION_ID:
+      display_style: normal
+      description: please set the subscription id which should be used
+  - AZURE_TENANT_ID:
+      display_style: normal
+      description: please set the tenant id which should be used
+# These are the applications that will be deployed in this blueprint
+applications:
+  # One instance of java-spring-website
+  # (see: applications/java-spring-website/java-spring-website.yaml)
+  - java-spring-website:
+      instances: 1
+      input_values:
+        - DB_HOSTNAME: $outputs.azure-mysql.server_name
+        - DB_USER: $outputs.azure-mysql.server_admin_login_name
+        - USE_SSL: true
+        - DB_PASS: $DB_PASS
+        - DB_NAME: $DB_NAME
+      # The website depends on MySQL and will start deploying only when
+      # the database is ready
+      depends_on:
+        - azure-mysql
+services:
+  # Instance of azure database mysql
+  # (see: services/azure-mysql/azure-mysql.yaml)
+  - azure-mysql:
+      input_values:
+        - DB_NAME: $DB_NAME
+        - DB_USER: $DB_USER
+        - DB_PASS: $DB_PASS
+        - SANDBOX_ID: $COLONY.SandboxId
+        - CLIENT_ID: $AZURE_CLIENT_ID
+        - CLIENT_SECRET: $AZURE_CLIENT_SECRET
+        - SUBSCRIPTION_ID: $AZURE_SUBSCRIPTION_ID
+        - TENANT_ID: $AZURE_TENANT_ID
