@@ -37,7 +37,7 @@ echo "****************************************************************"
 echo "Installing MySQL Client"
 echo "****************************************************************"
 apt-get install mysql-client -y
-apt-get install default-libmysqlclient-dev -y
+apt-get install libssl-dev libmysqlclient-dev -y
 gem install mysql2
 
 
