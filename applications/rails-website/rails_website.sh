@@ -59,4 +59,4 @@ echo "****************************************************************"
 rm /usr/share/rubygems-integrration/all/gems/rake*
 bundle install
 
-rake db:migrate
+rake db:migrate RAILS_ENV=development
