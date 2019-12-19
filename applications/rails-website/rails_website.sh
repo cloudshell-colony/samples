@@ -56,7 +56,4 @@ bundle install
 echo "****************************************************************"
 echo "Running DB migration"
 echo "****************************************************************"
-rm /usr/share/rubygems-integrration/all/gems/rake*
-bundle install
-
-rake db:migrate RAILS_ENV=development
+rails db:migrate
