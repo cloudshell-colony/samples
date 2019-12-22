@@ -27,6 +27,7 @@ echo "****************************************************************"
 apt-get install ruby-full -y 
 echo 'gem: --no-document' >> ~/.gemrc
 gem update --system
+gem install bundler -v 1.16.1
 
 echo "****************************************************************"
 echo "Installing Rails"
@@ -48,7 +49,6 @@ mkdir /home/artifacts
 cd /home/artifacts || exit
 git clone https://github.com/cloudshell-colony/sample_rails_source.git
 
-
 cd /home/artifacts/sample_rails_source/website || exit
 bundle install 
 
@@ -56,5 +56,4 @@ bundle install
 echo "****************************************************************"
 echo "Running DB migration"
 echo "****************************************************************"
-rake db:migrate
-
+rails db:migrate
