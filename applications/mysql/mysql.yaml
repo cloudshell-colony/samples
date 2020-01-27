@@ -35,7 +35,7 @@ source:
     # be used to create a new EC2 instance in the defined
     # AWS region
     ami:
-      - id: ami-f90a4880
+      - id: ami-03ef731cc103c9f09
         region: eu-west-1
         username: ubuntu
     azure_image:
