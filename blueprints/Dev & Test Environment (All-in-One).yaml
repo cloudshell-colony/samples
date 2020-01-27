@@ -11,7 +11,7 @@ kind: blueprint
 metadata:
   description: >
     A cheap environment for developers. Based on a Java Spring website deployed on a Tomcat
-    server and MySQL database - on one EC2 instance
+    server and MySQL database - deployed to one EC2 instance
 
 clouds:
   - AWS: eu-west-1
