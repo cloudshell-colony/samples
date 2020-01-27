@@ -1,5 +1,5 @@
 # A Java Spring website deployed on a TomCat server and a
-# MySQL database - all deployed on the same EC2 instance
+# MySQL database
 #
 # Application source code:
 # https://github.com/cloudshell-colony/sample_java_spring_source
@@ -11,7 +11,7 @@ kind: blueprint
 metadata:
   description: >
     A cheap environment for developers. Based on a Java Spring website deployed on a Tomcat
-    server and MySQL database
+    server and MySQL database - on one EC2 instance
 
 clouds:
   - AWS: eu-west-1
