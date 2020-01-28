@@ -1,3 +1,6 @@
+# read for more details:
+# https://colonysupport.quali.com/hc/en-us/articles/360026640394-Modeling-Cloud-Services-with-Terraform
+
 spec_version: 1
 kind: TerraForm
 inputs:
