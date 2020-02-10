@@ -1,9 +1,5 @@
-# A Java Spring website deployed on a TomCat server and a
-# MySQL database deployed on two Azure VMs
-#
-#       [Front End] (Java, Tomcat)
-#            |
-#       [Back End]  (MySQL)
+# A Java Spring website deployed on a TomCat server and an
+# Azure database service
 #
 # Application source code:
 # https://github.com/cloudshell-colony/sample_java_spring_source
