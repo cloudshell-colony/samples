@@ -11,7 +11,7 @@ kind: blueprint
 metadata:
   description: >
     A Java Spring website deployed on a TomCat
-    server and MySQL database
+    server and an Azure MySQL database
 clouds:
   - azure: westeurope
 
@@ -31,18 +31,7 @@ inputs:
       default_value: sv4YPTPs7fN&
   # Used to define the db admin password
   - DB_NAME: demo_db  # DB_NAME - a target database name
-  - AZURE_CLIENT_ID:
-      display_style: normal
-      description: please set the client id (Application ID) for authentication
-  - AZURE_CLIENT_SECRET:
-      display_style: masked
-      description: please set the client secrete for authentication
-  - AZURE_SUBSCRIPTION_ID:
-      display_style: normal
-      description: please set the subscription id which should be used
-  - AZURE_TENANT_ID:
-      display_style: normal
-      description: please set the tenant id which should be used
+  - MANAGED_IDENTITY
 # These are the applications that will be deployed in this blueprint
 applications:
   # One instance of java-spring-website
@@ -68,7 +57,4 @@ services:
         - DB_USER: $DB_USER
         - DB_PASS: $DB_PASS
         - SANDBOX_ID: $COLONY.SandboxId
-        - CLIENT_ID: $AZURE_CLIENT_ID
-        - CLIENT_SECRET: $AZURE_CLIENT_SECRET
-        - SUBSCRIPTION_ID: $AZURE_SUBSCRIPTION_ID
-        - TENANT_ID: $AZURE_TENANT_ID
+        - MANAGED_IDENTITY: $MANAGED_IDENTITY
