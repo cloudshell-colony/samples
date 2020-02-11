@@ -53,8 +53,8 @@ services:
   # (see: services/azure-mysql/azure-mysql.yaml)
   - azure-mysql:
       input_values:
-        - DB_NAME: $DB_NAME
-        - DB_USER: $DB_USER
-        - DB_PASS: $DB_PASS
-        - SANDBOX_ID: $COLONY.SandboxId
-        - MANAGED_IDENTITY: $MANAGED_IDENTITY
+      - DB_NAME: $DB_NAME
+      - DB_USER: $DB_USER
+      - DB_PASS: $DB_PASS
+      - SANDBOX_ID: $COLONY.SandboxId
+      - MANAGED_IDENTITY: $MANAGED_IDENTITY
