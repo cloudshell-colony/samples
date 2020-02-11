@@ -30,4 +30,4 @@ outputs:        # Declaring the outputs from Terraform that will be used as an i
   
 permissions:
   azure:
-  managed_identity_id: $MANAGED_IDENTITY
+    managed_identity_id: $MANAGED_IDENTITY
