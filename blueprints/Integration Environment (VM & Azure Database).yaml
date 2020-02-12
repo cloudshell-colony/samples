@@ -58,5 +58,6 @@ services:
       - DB_PASS: $DB_PASS
       - SANDBOX_ID: $COLONY.SandboxId
       - MANAGED_IDENTITY: $MANAGED_IDENTITY
+      
 debugging:
   availability: on
