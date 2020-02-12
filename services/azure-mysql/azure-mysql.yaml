@@ -23,9 +23,9 @@ variables:
     
 outputs:        # Declaring the outputs from Terraform that will be used as an input to the application consuming this service
   # The MySQL server name will be used as an input to the application consuming this service
-  #- server_name
+  - server_name
   # The server admin login username that you supplied
-  # - server_admin_login_name
+  - server_admin_login_name
   
 permissions:
   azure:
