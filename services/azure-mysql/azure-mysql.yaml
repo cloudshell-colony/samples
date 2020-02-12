@@ -1,5 +1,6 @@
 spec_version: 1
 kind: TerraForm
+
 inputs:
   - MANAGED_IDENTITY
   - DB_NAME
