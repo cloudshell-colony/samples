@@ -13,7 +13,7 @@ metadata:
     A Java Spring website deployed on a TomCat
     server and an Azure MySQL database
 clouds:
-  - azure: westeurope
+  - azure-staging: westeurope
 
 # These are the blueprint parameters and their default values.
 # The values can be changed when creating a sandbox based on this
