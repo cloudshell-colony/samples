@@ -1,24 +1,19 @@
-# A Java Spring website deployed on a TomCat server and a
-# MySQL database deployed on two Azure VMs
+# A WordPress web site deployed on 2 Azure VMs
 #
-#       [Front End] (Java, Tomcat)
+#       [Front End] (Apache, PHP, WordPress)
 #            |
 #       [Back End]  (MySQL)
 #
-# Application source code:
-# https://github.com/cloudshell-colony/sample_java_spring_source
 #
 ---
 spec_version: 1
 kind: blueprint
 
 metadata:
-  description: >
-    A Java Spring website deployed on a TomCat
-    server and MySQL database
+  description: LAMP WordPress stack (Linux, Apache, MySQL, PHP)
 
 clouds:
-  - azure: westus
+  - azure: westeurope
 
 # These are the blueprint parameters and their default values.
 # The values can be changed when creating a sandbox based on this
@@ -28,26 +23,24 @@ inputs:
   - DB_PASS:
       display_style: masked
       description: please set the root database passwor
-      default_value: 12345
-  # Used to define the db admin password
-  - DB_NAME: demo_db  # DB_NAME - a target database name
+      default_value: 12345  # Used to define the db admin password
+  - DB_NAME: wordpress_demo  # DB_NAME - a target database name
 
 # These are the applications that will be deployed in this blueprint
 applications:
   - mysql:  # One instance of mysql (see: applications/mysql/mysql.yaml)
       input_values:
-        - DB_USER: $DB_USER  # Assign values from the app inputs
+        - DB_USER: $DB_USER
         - DB_PASS: $DB_PASS
         - DB_NAME: $DB_NAME
-  # One instance of java-spring-website
-  # (see: applications/java-spring-website/java-spring-website.yaml)
-  - java-spring-website:
+  # One instance of WordPress (see: applications/wordpress/wordpress.yaml)
+  - wordpress:
       instances: 1
       input_values:
         - DB_USER: $DB_USER
         - DB_PASS: $DB_PASS
         - DB_NAME: $DB_NAME
-      # The website depends on MySQL and will start deploying only when
-      # the database is ready
+      # The wodpress site depends on MySQL and will start deploying
+      # only when the database is ready
       depends_on:
         - mysql
