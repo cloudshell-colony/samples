@@ -14,7 +14,7 @@ inputs:
   # It is recommended that you create a specific role with relevant permissions and provide its ARN here.
 
 module:
-  source: github.com/eyalperlm/terraform/rds-mysql
+  source: github.com/cloudshell-colony/terraform/rds-mysql
   # The source element is the location of your Terraform module,
   # Both public and private repos are supported
 
