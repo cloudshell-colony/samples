@@ -3,8 +3,7 @@ kind: blueprint
 
 metadata:
   description: >
-    A Java Spring website deployed on a TomCat
-    server and an Azure MySQL database
+    Java application with a managed Azure database deployed with TerraForm.
 clouds:
   - azure: westeurope
 
