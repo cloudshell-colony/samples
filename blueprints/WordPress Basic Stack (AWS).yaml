@@ -1,11 +1,3 @@
-# A WordPress web site deployed on 2 EC2 instances
-#
-#       [Front End] (Apache, PHP, WordPress)
-#            |
-#       [Back End]  (MySQL)
-#
-#
----
 spec_version: 1
 kind: blueprint
 
