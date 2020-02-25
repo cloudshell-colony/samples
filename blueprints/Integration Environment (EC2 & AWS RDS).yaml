@@ -3,8 +3,7 @@ kind: blueprint
 
 metadata:
   description: >
-    A Java Spring website deployed on a Tomcat
-    server and an AWS RDS service
+    Java application with a managed RDS database deployed with TerraForm.
 
 clouds:
   - AWS: eu-west-1
