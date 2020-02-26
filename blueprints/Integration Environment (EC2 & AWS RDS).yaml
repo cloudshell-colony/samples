@@ -46,4 +46,4 @@ services:
         - SANDBOX_ID: $COLONY.SandboxId
         - VPC_ID: $COLONY.VirtualNetworkId  # Sandbox VPC Id
 debugging:
-  availability: on
+  availability: On
