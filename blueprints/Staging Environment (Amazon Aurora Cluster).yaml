@@ -4,7 +4,7 @@ kind: blueprint
 
 metadata:
   description: >
-    A complex cloud architecture of a web application 
+    A complex cloud architecture of a web application
     and a managed database cluster deployed with TerraForm.
 
 clouds:
@@ -15,7 +15,7 @@ clouds:
 # blueprint.
 inputs:
   - DB_USER: root  # Used to define the db admin account
-  - DB_PASS: # Used to define the db admin password
+  - DB_PASS:  # Used to define the db admin password
       display_style: masked
       description: please set the root database password
       default_value: Colony!123
@@ -31,13 +31,15 @@ applications:
         - DB_USER: $DB_USER
         - DB_PASS: $DB_PASS
         - DB_NAME: $DB_NAME
-        - DB_HOSTNAME: $outputs.rds-mysql-aurora-cluster.hostname #DNS name output from the RDS service
+        # DNS name output from the RDS service
+        - DB_HOSTNAME: $outputs.rds-mysql-aurora-cluster.hostname
       # The website depends on MySQL and will start deploying only when
       # the database is ready
       depends_on:
         - rds-mysql-aurora-cluster
 services:
-  - rds-mysql-aurora-cluster:  # One instance of mysql (see: services/rds-mysql-aurora-cluster/rds-mysql-aurora-cluster.yaml)
+# One instance of mysql (see: services/rds-mysql-aurora-cluster/rds-mysql-aurora-cluster.yaml)
+  - rds-mysql-aurora-cluster:
       input_values:
         - DB_NAME: $DB_NAME
         - DB_USER: $DB_USER
@@ -45,6 +47,6 @@ services:
         - CLUSTER_MIN_CAPACITY: 2
         - CLUSTER_MAX_CAPACITY: 4
         - SANDBOX_ID: $COLONY.SandboxId
-        - VPC_ID: $COLONY.VirtualNetworkId #Sandbox VPC Id
+        - VPC_ID: $COLONY.VirtualNetworkId  # Sandbox VPC Id
 debugging:
-  availability: on
+  availability: true
