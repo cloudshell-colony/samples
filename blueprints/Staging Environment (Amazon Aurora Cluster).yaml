@@ -38,7 +38,7 @@ applications:
       depends_on:
         - rds-mysql-aurora-cluster
 services:
-  # One instance of mysql 
+  # One instance of mysql
   # (see: services/rds-mysql-aurora-cluster/rds-mysql-aurora-cluster.yaml)
   - rds-mysql-aurora-cluster:
       input_values:
