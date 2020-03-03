@@ -47,4 +47,3 @@ services:
         - VPC_ID: $COLONY.VirtualNetworkId  # Sandbox VPC Id
 debugging:
   availability: enabled-on
-  
