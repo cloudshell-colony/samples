@@ -52,4 +52,4 @@ services:
         - SANDBOX_ID: $COLONY.SandboxId
         - MANAGED_IDENTITY: $MANAGED_IDENTITY
 debugging:
-  availability: On
+  availability: enabled-on

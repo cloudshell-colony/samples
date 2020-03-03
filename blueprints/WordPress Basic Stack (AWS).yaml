@@ -39,4 +39,4 @@ applications:
         - mysql
 
 debugging:
-  availability: On
+  availability: enabled-on
