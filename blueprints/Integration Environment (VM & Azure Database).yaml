@@ -53,4 +53,3 @@ services:
         - MANAGED_IDENTITY: $MANAGED_IDENTITY
 debugging:
   availability: enabled-on
-  
