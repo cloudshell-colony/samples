@@ -31,11 +31,11 @@ apt-get install php7.0 php7.0-mysql libapache2-mod-php7.0 php7.0-cli php7.0-cgi 
 echo "****************************************************************"
 echo "Installing Wordpress"
 echo "****************************************************************"
-wget -c http://wordpress.org/latest.tar.gz
-tar -xzvf latest.tar.gz
-rsync -av wordpress/* /var/www/html/
-chown -R www-data:www-data /var/www/html/
-chmod -R 755 /var/www/html/
+wget -c http://wordpress.org/latest.tar.gz >/dev/null
+tar -xzvf latest.tar.gz >/dev/null
+rsync -av wordpress/* /var/www/html/ >/dev/null
+chown -R www-data:www-data /var/www/html/ >/dev/null
+chmod -R 755 /var/www/html/ >/dev/null
 rm /var/www/html/index.html
 
 
