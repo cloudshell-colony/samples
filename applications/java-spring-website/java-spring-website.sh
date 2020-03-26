@@ -10,21 +10,21 @@ printenv > /var/log/colony-vars-"$(basename "$BASH_SOURCE" .sh)".txt
 echo "****************************************************************"
 echo "Updating System"
 echo "****************************************************************"
-apt-get update -y >/dev/null
+apt-get update -y
 
 
 echo "****************************************************************"
 echo "Installing Java"
 echo "****************************************************************"
-apt-get install default-jdk -y >/dev/null
+apt-get install default-jdk -y
 
 
 
 echo "****************************************************************"
 echo "Installing Tomcat"
 echo "****************************************************************"
-apt-get install tomcat8 -y >/dev/null
-apt-get install tomcat8-admin -y >/dev/null
+apt-get install tomcat8 -y
+apt-get install tomcat8-admin -y
 
 
 echo "****************************************************************"
