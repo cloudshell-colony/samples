@@ -15,7 +15,7 @@ inputs:
   - DB_USER: root  # Used to define the db admin account
   - DB_PASS:
       display_style: masked
-      description: please set the root database passwor
+      description: please set the root database password
       default_value: 12345  # Used to define the db admin password
   - DB_NAME: wordpress_demo  # DB_NAME - a target database name
 
