@@ -32,7 +32,7 @@ infrastructure:
           ingress-healthcheck:
             healthy-threshold: 5
             interval: 30
-            path: /wp-admin/install.php
+            path: /wp-includes/images/blank.gif
             status-codes: 200-299
             timeout: 5
             unhealthy-threshold: 2
