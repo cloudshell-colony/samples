@@ -29,6 +29,13 @@ infrastructure:
     external:
       - port_info:
           port: 80
+          ingress-healthcheck:
+            healthy-threshold: 5
+            interval: 30
+            path: /wp-includes/images/blank.gif
+            status-codes: 200-299
+            timeout: 5
+            unhealthy-threshold: 2
 
 # This is a clean Ubuntu server image that will be
 # used to create a new EC2 instance in the defined AWS region
