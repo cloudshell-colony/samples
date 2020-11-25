@@ -21,10 +21,6 @@ variables:
     - username: $DB_USER
     - password: $DB_PASS
     - sandbox_id: $SANDBOX_ID
-
-configuration:
-  initialization:
-    script: azure-mysql.sh
     
 outputs:        # Declaring the outputs from Terraform that will be used as an input to the application consuming this service
   # The MySQL server name will be used as an input to the application consuming this service

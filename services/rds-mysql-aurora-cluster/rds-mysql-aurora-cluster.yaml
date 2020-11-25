@@ -29,9 +29,6 @@ variables:
     - vpc_id: $VPC_ID
     - min_capacity: $CLUSTER_MIN_CAPACITY
     - max_capacity: $CLUSTER_MAX_CAPACITY
-configuration:
-  initialization:
-    script: rds-mysql-aurora-cluster.sh
 outputs:        # Declaring the outputs from Terraform that will be recognized in this blueprint
   - hostname    # The RDS host name will be used as an input to the application consuming the RDS service
 permissions:
