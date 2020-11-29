@@ -32,7 +32,8 @@ applications:
         - DB_PASS: $DB_PASS
         - DB_NAME: $DB_NAME
         # DNS name output from the RDS service
-        - DB_HOSTNAME: $outputs.rds-mysql-aurora-cluster.hostname
+        - DB_HOSTNAME: >-
+            $colony.services.rds-mysql-aurora-cluster.outputs.hostname
       # The website depends on MySQL and will start deploying only when
       # the database is ready
       depends_on:
@@ -47,7 +48,7 @@ services:
         - DB_PASS: $DB_PASS
         - CLUSTER_MIN_CAPACITY: 2
         - CLUSTER_MAX_CAPACITY: 4
-        - SANDBOX_ID: $COLONY.SandboxId
-        - VPC_ID: $COLONY.VirtualNetworkId  # Sandbox VPC Id
+        - SANDBOX_ID: $colony.environment.id
+        - VPC_ID: $colony.environment.virtual_network_id  # Sandbox VPC Id
 debugging:
   availability: enabled-on

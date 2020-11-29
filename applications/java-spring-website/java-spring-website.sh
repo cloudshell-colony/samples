@@ -40,10 +40,6 @@ echo "Prepare the environment configuration file that will be consumed by the se
 echo "****************************************************************"
 mkdir /home/user/.config/colony-java-spring-sample -p
 
-if [ "$DB_HOSTNAME" == "none" ]; then
-    DB_HOSTNAME="mysql.$DOMAIN_NAME"
-fi
-
 jdbc_url=jdbc:mysql://$DB_HOSTNAME/$DB_NAME
 if [ "$USE_SSL" = true ]; then
     jdbc_url="${jdbc_url}?useSSL=true"

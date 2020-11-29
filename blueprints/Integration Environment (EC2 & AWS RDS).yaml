@@ -32,7 +32,7 @@ applications:
         - DB_PASS: $DB_PASS
         - DB_NAME: $DB_NAME
         # DNS name output from the RDS service
-        - DB_HOSTNAME: $outputs.rds-mysql.hostname
+        - DB_HOSTNAME: $colony.services.rds-mysql.outputs.hostname
       # The website depends on MySQL and will start deploying only when
       # the database is ready
       depends_on:
@@ -43,7 +43,7 @@ services:
         - DB_NAME: $DB_NAME
         - DB_USER: $DB_USER
         - DB_PASS: $DB_PASS
-        - SANDBOX_ID: $COLONY.SandboxId
-        - VPC_ID: $COLONY.VirtualNetworkId  # Sandbox VPC Id
+        - SANDBOX_ID: $colony.environment.id
+        - VPC_ID: $colony.environment.virtual_network_id  # Sandbox VPC Id
 debugging:
   availability: enabled-on
