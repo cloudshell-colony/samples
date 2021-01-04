@@ -18,16 +18,18 @@ inputs:
 - RELEASE_NUMBER: none
 - API_BUILD_NUMBER: none
 
-applications:     
+applications:
   - promotions-manager-ui:
+      instances: 2
       input_values:
         - PORT: $PORT
         - API_PORT: $API_PORT
+        - API_DNS: $colony.applications.promotions-manager-api.dns
 
   - promotions-manager-api:
       input_values:        
         - API_PORT: $API_PORT
-        - DATABASE_HOST: mongodb
+        - DATABASE_HOST: $colony.applications.mongodb.dns
         - RELEASE_NUMBER: $RELEASE_NUMBER
         - API_BUILD_NUMBER: $API_BUILD_NUMBER
         
