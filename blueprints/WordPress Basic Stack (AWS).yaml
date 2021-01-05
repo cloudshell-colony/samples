@@ -40,4 +40,4 @@ applications:
         - mysql
 
 debugging:
-  availability: enabled-on
+  bastion-availability: enabled-on

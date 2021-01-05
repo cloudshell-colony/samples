@@ -52,4 +52,4 @@ services:
         - SANDBOX_ID: $colony.environment.id
         - MANAGED_IDENTITY: $MANAGED_IDENTITY
 debugging:
-  availability: enabled-on
+  bastion-availability: enabled-on
