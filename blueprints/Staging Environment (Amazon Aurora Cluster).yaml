@@ -51,4 +51,4 @@ services:
         - SANDBOX_ID: $colony.environment.id
         - VPC_ID: $colony.environment.virtual_network_id  # Sandbox VPC Id
 debugging:
-  availability: enabled-on
+  bastion_availability: enabled-on
