@@ -9,9 +9,9 @@ metadata:
 clouds:
   - AWS: eu-west-1
 
-# These are the blueprint parameters and their default values. 
+# These are the blueprint parameters and their default values.
 # The values can be changed when creating a sandbox based on this
-# blueprint.
+# blueprint..
 inputs:
   - DB_USER: root  # Used to define the db admin account
   - DB_PASS:
