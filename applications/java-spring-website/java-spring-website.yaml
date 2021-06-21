@@ -68,7 +68,7 @@ configuration:
   # to validate it is up
   healthcheck:
     script: healthcheck.sh
-    timeout: 600
+    timeout: 1200
 
 debugging:
   connection_protocol: SSH

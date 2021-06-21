@@ -67,7 +67,7 @@ configuration:
   # To validate the installation, we wait to see that the ports are available
   healthcheck:
     wait_for_ports: ALL
-    timeout: 600
+    timeout: 1500
 
 debugging:
   connection_protocol: SSH
