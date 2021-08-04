@@ -1,0 +1,28 @@
+kind: application
+inputs:
+infrastructure:
+  connectivity:
+    internal:
+     - port_info:
+        port: 27017
+        path: ''
+
+  compute:
+    spec:        
+      kubernetes:
+        cpu: 250m
+configuration:
+  start:
+    command: docker-entrypoint.sh mongod
+  healthcheck:
+    timeout: 1000
+    wait_for_ports: ALL
+source:
+  image:    
+    username: adminuser
+    docker_image:
+       - name: mongo
+         tag: 4.4.6
+         username: root
+  os_type: linux
+spec_version: 1
