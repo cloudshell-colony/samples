@@ -1,3 +1,4 @@
+---
 kind: application
 inputs:
   - DB_URL
@@ -10,7 +11,7 @@ infrastructure:
           port: 7000
           path: ''
   compute:
-    spec:        
+    spec:
       kubernetes:
         cpu: 250m
 configuration:
@@ -22,11 +23,11 @@ configuration:
     timeout: 100
     wait_for_ports: ALL
 source:
-  image:    
+  image:
     username: adminuser
     docker_image:
-       - name: colonysamples/todo-api
-         tag: $DOCKER_TAG
-         username: root
+      - name: colonysamples/todo-api
+        tag: $DOCKER_TAG
+        username: root
   os_type: linux
 spec_version: 1
