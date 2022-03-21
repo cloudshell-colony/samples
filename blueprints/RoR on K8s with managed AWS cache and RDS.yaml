@@ -1,0 +1,64 @@
+#    This is a sample blueprint that deploys a ruby on rails (ror) web app with AWS ElastiCache (Redis) and RDS PostgreSQL database.
+#    https://community.qtorque.io/developing-blueprints-61/the-blueprint-yaml-file-307
+#
+---
+spec_version: 1
+kind: blueprint
+
+metadata: 
+  description: >
+    Ruby on Rails application running on EKS cluster, using AWS Elasticache and AWS RDS (PostgreSQL)
+clouds:
+  - aws-demo/eks-demo
+
+inputs:
+  - version:
+      description: that will be used as the docker images tag
+      default_value: latest
+      optional: true
+  - DB_USER: root  # Used to define the db admin account
+  - DB_PASS:   # Used to define the db admin password
+      display_style: masked
+      description: please set the root database password
+      default_value: Torque!123
+  - DB_NAME: demo_db  # DB_NAME - a target database name
+  - EKS_VPC: # AWS ElastiCache should be deployed in the same VPC of the EKS nodes 
+      default_value: vpc-xxxxxxxxxxxx
+      description: AWS ElastiCache should be deployed in the same VPC of the EKS nodes.
+      optional: false
+      
+applications:
+  - ror-app:
+      input_values:
+        - DOCKER_TAG: $version
+        - REDIS: ${colony.services.elasticache-postgres-modules.outputs.hostname}
+        - POSTGRES: ${colony.services.elasticache-postgres-modules.outputs.postgres_hostname}
+        - DB_NAME: $DB_NAME
+        - DB_USER: $DB_USER
+        - DB_PASS: $DB_PASS
+      depends_on:
+        - elasticache-postgres-modules
+
+services:
+  - elasticache-postgres-modules:
+      input_values:
+        - EKS_VPC: $EKS_VPC
+        - DB_NAME: $DB_NAME
+        - DB_USER: $DB_USER
+        - DB_PASS: $DB_PASS
+        - SANDBOX_ID: $colony.environment.id
+
+ingress:
+  listeners:
+    - http: 80
+      rules:
+      - application: ror-app
+        port: 3000
+        default: true
+        shortcut: ${colony.environment.public_address}
+        health_check:                  
+          interval: 40
+          path: /
+          status-codes: 200-299
+          timeout: 200
+          unhealthy-threshold: 5

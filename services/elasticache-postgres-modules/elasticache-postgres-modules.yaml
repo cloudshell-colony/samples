@@ -1,0 +1,30 @@
+spec_version: 1
+kind: TerraForm
+
+inputs: 
+  - EKS_VPC
+  - DB_NAME
+  - DB_USER
+  - DB_PASS
+  - SANDBOX_ID
+module:
+  source: github.com/cloudshell-colony/samples/terraform/terraform-utils/elasticache-postgres-modules
+
+terraform_version: 1.0.3
+
+variables:
+# #   # var_file: terraform.tfvars  #optional
+  values:
+    - eks_vpc: $EKS_VPC
+    - db_name: $DB_NAME
+    - username: $DB_USER
+    - password: $DB_PASS
+    - sandbox_id: $SANDBOX_ID
+outputs:        # Declaring the outputs from Terraform that will be recognized in this blueprint
+  - hostname    # The Redis host name will be used as an input to the application consuming the Redis service
+  - EKS_VPC
+  - postgres_hostname
+permissions:  #optional
+  aws:
+    role_arn: PowerUserAccess     #role assumed by service
+    external_id: 'colony'

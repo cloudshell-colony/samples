@@ -1,0 +1,57 @@
+#    This is a sample blueprint that deploys a flask based web app with React frontend in EKS.
+#    https://community.qtorque.io/developing-blueprints-61/the-blueprint-yaml-file-307
+#
+---
+spec_version: 1
+kind: blueprint
+
+metadata: 
+  description: >
+    Flask framework with React application basic stack (All-Containers)
+
+clouds:
+  - aws-demo/eks-demo
+
+
+inputs:
+  - version:
+      description: that will be used as the docker images tag
+      default_value: latest
+      optional: true
+
+applications:
+  - react-frontend:
+      input_values:
+        - DOCKER_TAG: $version
+        - SERVER_URL: ${colony.environment.public_address}
+      depends_on:
+        - flask-backend
+  - flask-backend:
+      input_values:
+        - DOCKER_TAG: $version
+
+
+ingress:
+  listeners:
+    - http: 80
+      rules:
+      - application: flask-backend
+        port: 5000
+        shortcut: ${colony.environment.public_address}/api
+        path: /api
+        health_check:                  
+          interval: 15
+          path: /api
+          status_codes: 200-299
+          timeout: 5
+          unhealthy_threshold: 20
+      - application: react-frontend
+        port: 3000
+        default: true
+        shortcut: ${colony.environment.public_address}
+        health_check:
+          interval: 15
+          path: /
+          status_codes: 200-299
+          timeout: 5
+          unhealthy_threshold: 20

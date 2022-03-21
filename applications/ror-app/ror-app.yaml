@@ -1,0 +1,38 @@
+spec_version: 1
+kind: application
+inputs:
+  - DOCKER_TAG
+  - REDIS
+  - POSTGRES
+  - DB_NAME
+  - DB_USER 
+  - DB_PASS 
+infrastructure:
+  connectivity:
+    internal:
+      - port_info:
+          port: 3000
+  compute:
+    spec:        
+       kubernetes:
+        cpu: 1000m
+        ram: 256Mi
+configuration:
+  initialization:
+    script: ror-app.sh
+  start:
+    script: ror-app-command.sh
+  healthcheck:
+    timeout: 120
+    wait_for_ports: 3000
+source:
+  image:    
+    docker_image:
+       - name: torquesamples/ror-app
+         tag: $DOCKER_TAG
+         username: root
+  os_type: linux
+
+debugging: 
+  connection_protocol: SSH
+  allow_direct_access: true
